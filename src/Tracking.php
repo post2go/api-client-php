@@ -30,12 +30,7 @@ class Tracking
         }
     }
 
-    public function get(array $options = array())
-    {
-        return $this->request->send('trackings', 'GET', $options);
-    }
-
-    public function info($slug, $trackingNumber, array $fields = array())
+    public function get($slug, $trackingNumber, array $fields = array())
     {
         if (empty($slug)) {
             throw new EmptySlug;

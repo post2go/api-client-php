@@ -3,24 +3,27 @@ namespace ParcelGoClient\Core;
 
 use Guzzle\Common\Exception\GuzzleException;
 use Guzzle\Http\Exception\BadResponseException;
+use ParcelGoClient\Exception\EmptyApiKey;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class Request
 {
-    private $apiUrl = 'http://parcelgo.ru:8888';
+    private $apiUrl = 'http://api.parcelgo.ru';
     protected $apiKey = '';
     private $apiVersion = 'v1';
     protected $guzzlePlugins = [];
     private $client;
 
     /**
-     * @param $endpoint
      * @param string $apiKey
      * @param array $guzzlePlugins
+     * @throws \ParcelGoClient\Exception\EmptyApiKey
      */
-    public function __construct($endpoint, $apiKey = '', $guzzlePlugins = [])
+    public function __construct($apiKey, $guzzlePlugins = [])
     {
-        $this->apiUrl = $endpoint;
+        if (empty($apiKey)) {
+            throw new EmptyApiKey();
+        }
         $this->apiKey = $apiKey;
         $this->guzzlePlugins = $guzzlePlugins;
         $this->client = new \Guzzle\Http\Client();

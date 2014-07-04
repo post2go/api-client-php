@@ -6,13 +6,12 @@ class Manager
     protected $request;
 
     /**
-     * @param $endpoint
      * @param string $apiKey
      * @param array $guzzlePlugins
      */
-    public function __construct($endpoint, $apiKey, $guzzlePlugins = [])
+    public function __construct($apiKey, $guzzlePlugins = [])
     {
-        $this->request = new Core\Request($endpoint, $apiKey, $guzzlePlugins);
+        $this->request = new Core\Request($apiKey, $guzzlePlugins);
     }
 
     /**
