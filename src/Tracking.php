@@ -1,36 +1,19 @@
 <?php
 namespace ParcelGoClient;
 
-use ParcelGoClient\Core\Request;
-use ParcelGoClient\Exception\EmptyRequest;
 use ParcelGoClient\Exception\EmptySlug;
 use ParcelGoClient\Exception\EmptyTrackingNumber;
 
-class Tracking
+class Tracking extends Base
 {
-    private $request;
-
-    public function __construct(Request $request)
-    {
-        $this->request = $request;
-    }
-
-    public function create(array $data)
-    {
-        if (empty($data)) {
-            throw new EmptyRequest;
-        }
-
-        $result = $this->request->send('trackings', 'POST', json_encode(array('tracking' => $data)));
-
-        if ($result['meta']['code'] == 200 || $result['meta']['code'] == 201) {
-            return $result['data']['tracking'];
-        } else {
-            return false;
-        }
-    }
-
-    public function get($slug, $trackingNumber, array $fields = array())
+    /**
+     * @param $slug
+     * @param $trackingNumber
+     * @throws Exception\EmptySlug
+     * @throws Exception\EmptyTrackingNumber
+     * @return array|bool
+     */
+    public function create($slug, $trackingNumber)
     {
         if (empty($slug)) {
             throw new EmptySlug;
@@ -40,7 +23,42 @@ class Tracking
             throw new EmptyTrackingNumber;
         }
 
-        return $this->request->send('trackings/' . $slug . '/' . $trackingNumber, 'GET', $fields);
+        $data = ['tracking_number' => $trackingNumber, 'slug' => $slug];
+
+        return $this->request->send('trackings', 'POST', json_encode(array('tracking' => $data)));
+    }
+
+    /**
+     * @param $slug
+     * @param $trackingNumber
+     * @throws Exception\EmptySlug
+     * @throws Exception\EmptyTrackingNumber
+     * @return array|bool
+     */
+    public function get($slug, $trackingNumber)
+    {
+        if (empty($slug)) {
+            throw new EmptySlug;
+        }
+
+        if (empty($trackingNumber)) {
+            throw new EmptyTrackingNumber;
+        }
+
+        return $this->request->send('trackings/' . $slug . '/' . $trackingNumber, 'GET');
+    }
+
+    public function reactivate($slug, $trackingNumber)
+    {
+        if (empty($slug)) {
+            throw new EmptySlug;
+        }
+
+        if (empty($trackingNumber)) {
+            throw new EmptyTrackingNumber;
+        }
+
+        return $this->request->send('trackings/' . $slug . '/' . $trackingNumber . '/reactivate', 'POST');
     }
 
 }

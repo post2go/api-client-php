@@ -48,7 +48,7 @@ class Request
     public function send($url, $requestType, $data = array())
     {
         $headers = array(
-            'parcelgo-api-key' => $this->apiKey,
+            'x-authorization-token' => $this->apiKey,
             'content-type' => 'application/json'
         );
 
