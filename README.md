@@ -1,4 +1,4 @@
-ParcelGo.ru API client
+ParcelGo API client
 ================================================
 [![Build Status](https://travis-ci.org/parcelgo/api-client-php.svg?branch=master)](https://travis-ci.org/parcelgo/api-client-php)
 
