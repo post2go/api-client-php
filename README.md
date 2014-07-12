@@ -33,7 +33,7 @@ The recommended way to install is through [Composer](http://getcomposer.org).
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
 
-# Add Guzzle as a dependency
+# Add as a dependency
 php composer.phar require parcelgo/parcelgo-client:~1.0
 ```
 
