@@ -2,7 +2,7 @@ ParcelGo.ru API client
 ================================================
 [![Build Status](https://travis-ci.org/parcelgo/api-client-php.svg?branch=master)](https://travis-ci.org/parcelgo/api-client-php)
 
-Parcelgo is a shipment tracking service.
+[ParcelGo](http://parcelgo.ru/ "parcelgo.ru") is a shipment tracking service.
 
 ```php
 $parcelgoClient = new ParcelGoClient\Manager('INSERT YOUR API KEY HERE');
