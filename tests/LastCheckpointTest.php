@@ -9,7 +9,7 @@ class LastCheckpointTest extends Base
         $response = $this->getClient()->lastCheckpoint()->get(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
         $this->assertNotEmpty($response);
         $this->assertArrayHasKey('meta', $response);
-        $this->assertEquals(['code' => 200, 'message' => 'Success'], $response['meta']);
+        $this->assertEquals(array('code' => 200, 'message' => 'Success'), $response['meta']);
         $this->assertArrayHasKey('tracking_number', $response['data']);
         $this->assertArrayHasKey('courier_slug', $response['data']);
         $this->assertArrayHasKey('status', $response['data']);

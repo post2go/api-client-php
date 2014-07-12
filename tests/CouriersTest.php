@@ -9,7 +9,7 @@ class CourierTest extends Base
         $response = $this->getClient()->couriers()->get();
         $this->assertNotEmpty($response);
         $this->assertArrayHasKey('meta', $response);
-        $this->assertEquals(['code' => 200, 'message' => 'Success'], $response['meta']);
+        $this->assertEquals(array('code' => 200, 'message' => 'Success'), $response['meta']);
         $this->assertArrayHasKey('data', $response);
         $this->assertNotEmpty($response['data']);
         foreach ($response['data'] as $courier) {
@@ -26,7 +26,7 @@ class CourierTest extends Base
         $response = $this->getClient()->couriers()->detect(self::USPS_TRACKING_NUMBER);
         $this->assertNotEmpty($response);
         $this->assertArrayHasKey('meta', $response);
-        $this->assertEquals(['code' => 200, 'message' => 'Success'], $response['meta']);
+        $this->assertEquals(array('code' => 200, 'message' => 'Success'), $response['meta']);
         $this->assertArrayHasKey('total', $response['data']);
         $this->assertArrayHasKey('tracking_number', $response['data']);
         $this->assertArrayHasKey('couriers', $response['data']);

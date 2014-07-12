@@ -11,7 +11,7 @@ class Request
     private $apiUrl = 'http://api.parcelgo.ru';
     protected $apiKey = '';
     private $apiVersion = 'v1';
-    protected $guzzlePlugins = [];
+    protected $guzzlePlugins = array();
     private $client;
 
     /**
@@ -19,7 +19,7 @@ class Request
      * @param array $guzzlePlugins
      * @throws \ParcelGoClient\Exception\EmptyApiKey
      */
-    public function __construct($apiKey, $guzzlePlugins = [])
+    public function __construct($apiKey, $guzzlePlugins = array())
     {
         if (empty($apiKey)) {
             throw new EmptyApiKey();

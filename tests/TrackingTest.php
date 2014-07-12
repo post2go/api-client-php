@@ -21,7 +21,7 @@ class TrackingTest extends Base
         $response = $this->getClient()->tracking()->get(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
         $this->assertNotEmpty($response);
         $this->assertArrayHasKey('meta', $response);
-        $this->assertEquals(['code' => 200, 'message' => 'Success'], $response['meta']);
+        $this->assertEquals(array('code' => 200, 'message' => 'Success'), $response['meta']);
         $this->assertArrayHasKey('data', $response);
         $this->assertArrayHasKey('tracking', $response['data']);
         $this->assertArrayHasKey('tracking_number', $response['data']['tracking']);

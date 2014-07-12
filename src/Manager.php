@@ -9,7 +9,7 @@ class Manager
      * @param string $apiKey
      * @param array $guzzlePlugins
      */
-    public function __construct($apiKey, $guzzlePlugins = [])
+    public function __construct($apiKey, $guzzlePlugins = array())
     {
         $this->request = new Core\Request($apiKey, $guzzlePlugins);
     }
