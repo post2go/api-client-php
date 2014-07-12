@@ -9,6 +9,7 @@ $parcelgoClient = new ParcelGoClient\Manager('INSERT YOUR API KEY HERE');
 
 $courier = 'usps';
 $trackingNumber = 'EC208786464US';
+
 //detect courier by tracking number
 $parcelgoClient->couriers()->detect($trackingNumber);
 //get all couriers
