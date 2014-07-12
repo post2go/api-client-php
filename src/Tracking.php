@@ -23,7 +23,7 @@ class Tracking extends Base
             throw new EmptyTrackingNumber;
         }
 
-        $data = ['tracking_number' => $trackingNumber, 'slug' => $slug];
+        $data = array('tracking_number' => $trackingNumber, 'slug' => $slug);
 
         return $this->request->send('trackings', 'POST', json_encode(array('tracking' => $data)));
     }
