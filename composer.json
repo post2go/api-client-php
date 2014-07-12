@@ -1,12 +1,10 @@
 {
     "name": "parcelgo/parcelgo-client",
-    "type": "",
-    "keywords": [],
+    "keywords": ["track", "parcelgo", "shipping", "tracking"],
     "description": "ParcelGo API client.",
     "homepage": "http://parcelgo.ru/",
-    "minimum-stability" : "stable",
-    "license": "",
-    "version": "1.0.1",
+    "license": "BSD-3-Clause",
+    "version": "1.0.2",
     "require" : {
         "php": ">=5.3.0",
         "guzzle/guzzle": "3.9.*"
