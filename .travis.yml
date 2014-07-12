@@ -1,17 +1,16 @@
 language: php
-
 php:
-  - 5.3
-  - 5.4
-  - 5.5
-  - 5.6
-
+- 5.3
+- 5.4
+- 5.5
+- 5.6
 before_script:
-  - composer install --dev
-
+- composer install --dev
 script: vendor/bin/phpunit
-
 matrix:
   allow_failures:
-    - php: 5.6
+  - php: 5.6
   fast_finish: true
+env:
+  matrix:
+  - secure: d37XgubdA9x9b0W447raSVNfUsyBMGGFEsg4lxYmqlptS/6PSihlC9CYC21zKEMC+MlXC7PNhZjEEdzOjLbnRiUTX0XEh/GLrYZtBYDDXu5Uucc2zeQWfduAlqWubmC8z8N/BjTZGjyEcKCg9NQgWf3fEl7F0alclJyr6kPB8GI=
