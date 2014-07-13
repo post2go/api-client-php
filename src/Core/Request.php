@@ -80,4 +80,12 @@ class Request
 
         return $response;
     }
+
+    /**
+     * @param string $apiUrl
+     */
+    public function setApiUrl($apiUrl)
+    {
+        $this->apiUrl = $apiUrl;
+    }
 }
