@@ -7,11 +7,12 @@ class Manager
 
     /**
      * @param string $apiKey
+     * @param string $endpoint
      * @param array $guzzlePlugins
      */
-    public function __construct($apiKey, $guzzlePlugins = array())
+    public function __construct($apiKey, $endpoint = '', $guzzlePlugins = array())
     {
-        $this->request = new Core\Request($apiKey, $guzzlePlugins);
+        $this->request = new Core\Request($apiKey, $endpoint, $guzzlePlugins);
     }
 
     /**

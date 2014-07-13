@@ -16,15 +16,19 @@ class Request
 
     /**
      * @param string $apiKey
+     * @param string $endpoint
      * @param array $guzzlePlugins
      * @throws \ParcelGoClient\Exception\EmptyApiKey
      */
-    public function __construct($apiKey, $guzzlePlugins = array())
+    public function __construct($apiKey, $endpoint = '', $guzzlePlugins = array())
     {
         if (empty($apiKey)) {
             throw new EmptyApiKey();
         }
         $this->apiKey = $apiKey;
+        if ($endpoint) {
+            $this->apiUrl = $endpoint;
+        }
         $this->guzzlePlugins = $guzzlePlugins;
         $this->client = new \Guzzle\Http\Client();
 
@@ -81,11 +85,4 @@ class Request
         return $response;
     }
 
-    /**
-     * @param string $apiUrl
-     */
-    public function setApiUrl($apiUrl)
-    {
-        $this->apiUrl = $apiUrl;
-    }
 }
