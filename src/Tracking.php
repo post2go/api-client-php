@@ -7,15 +7,15 @@ use ParcelGoClient\Exception\EmptyTrackingNumber;
 class Tracking extends Base
 {
     /**
-     * @param $slug
+     * @param $courierSlug
      * @param $trackingNumber
      * @throws Exception\EmptySlug
      * @throws Exception\EmptyTrackingNumber
      * @return array|bool
      */
-    public function create($slug, $trackingNumber)
+    public function create($courierSlug, $trackingNumber)
     {
-        if (empty($slug)) {
+        if (empty($courierSlug)) {
             throw new EmptySlug;
         }
 
@@ -23,21 +23,21 @@ class Tracking extends Base
             throw new EmptyTrackingNumber;
         }
 
-        $data = array('tracking_number' => $trackingNumber, 'slug' => $slug);
+        $data = array('tracking_number' => $trackingNumber, 'courier_slug' => $courierSlug);
 
         return $this->request->send('trackings', 'POST', json_encode(array('tracking' => $data)));
     }
 
     /**
-     * @param $slug
+     * @param $courierSlug
      * @param $trackingNumber
      * @throws Exception\EmptySlug
      * @throws Exception\EmptyTrackingNumber
      * @return array|bool
      */
-    public function get($slug, $trackingNumber)
+    public function get($courierSlug, $trackingNumber)
     {
-        if (empty($slug)) {
+        if (empty($courierSlug)) {
             throw new EmptySlug;
         }
 
@@ -45,12 +45,12 @@ class Tracking extends Base
             throw new EmptyTrackingNumber;
         }
 
-        return $this->request->send('trackings/' . $slug . '/' . $trackingNumber, 'GET');
+        return $this->request->send('trackings/' . $courierSlug . '/' . $trackingNumber, 'GET');
     }
 
-    public function reactivate($slug, $trackingNumber)
+    public function reactivate($courierSlug, $trackingNumber)
     {
-        if (empty($slug)) {
+        if (empty($courierSlug)) {
             throw new EmptySlug;
         }
 
@@ -58,7 +58,7 @@ class Tracking extends Base
             throw new EmptyTrackingNumber;
         }
 
-        return $this->request->send('trackings/' . $slug . '/' . $trackingNumber . '/reactivate', 'POST');
+        return $this->request->send('trackings/' . $courierSlug . '/' . $trackingNumber . '/reactivate', 'POST');
     }
 
 }

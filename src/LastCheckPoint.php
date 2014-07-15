@@ -9,16 +9,16 @@ class LastCheckPoint extends Base
     /**
      * Return the tracking information of the last checkpoint of a single tracking.
      *
-     * @param $slug
+     * @param $courierSlug
      * @param $trackingNumber
      *
      * @throws Exception\EmptySlug
      * @throws Exception\EmptyTrackingNumber
      * @return mixed
      */
-    public function get($slug, $trackingNumber)
+    public function get($courierSlug, $trackingNumber)
     {
-        if (empty($slug)) {
+        if (empty($courierSlug)) {
             throw new EmptySlug;
         }
 
@@ -26,6 +26,6 @@ class LastCheckPoint extends Base
             throw new EmptyTrackingNumber;
         }
 
-        return  $this->getRequest()->send('last-checkpoint/' . $slug . '/' . $trackingNumber, 'GET');
+        return  $this->getRequest()->send('last-checkpoint/' . $courierSlug . '/' . $trackingNumber, 'GET');
     }
 } 

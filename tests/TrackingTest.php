@@ -12,27 +12,28 @@ class TrackingTest extends Base
         $this->assertArrayHasKey('data', $response);
         $this->assertArrayHasKey('tracking', $response['data']);
         $this->assertArrayHasKey('tracking_number', $response['data']['tracking']);
-        $this->assertArrayHasKey('slug', $response['data']['tracking']);
+        $this->assertArrayHasKey('courier_slug', $response['data']['tracking']);
 
     }
 
     public function testGet()
     {
         $response = $this->getClient()->tracking()->get(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
+//        var_dump($response);
+//        $this->expectOutputString('');
         $this->assertNotEmpty($response);
         $this->assertArrayHasKey('meta', $response);
         $this->assertEquals(array('code' => 200, 'message' => 'Success'), $response['meta']);
         $this->assertArrayHasKey('data', $response);
-        $this->assertArrayHasKey('tracking', $response['data']);
-        $this->assertArrayHasKey('tracking_number', $response['data']['tracking']);
-        $this->assertArrayHasKey('courier_slug', $response['data']['tracking']);
-        $this->assertArrayHasKey('is_active', $response['data']['tracking']);
-        $this->assertArrayHasKey('is_delivered', $response['data']['tracking']);
-        $this->assertArrayHasKey('last_check', $response['data']['tracking']);
-        $this->assertArrayHasKey('checkpoints', $response['data']['tracking']);
-        $this->assertNotEmpty($response['data']['tracking']['checkpoints']);
-        foreach ($response['data']['tracking']['checkpoints'] as $checkpoints) {
-            $this->assertArrayHasKey('checkpoint_time', $checkpoints);
+        $this->assertArrayHasKey('tracking_number', $response['data']);
+        $this->assertArrayHasKey('courier_slug', $response['data']);
+        $this->assertArrayHasKey('is_active', $response['data']);
+        $this->assertArrayHasKey('is_delivered', $response['data']);
+        $this->assertArrayHasKey('last_check', $response['data']);
+        $this->assertArrayHasKey('checkpoints', $response['data']);
+        $this->assertNotEmpty($response['data']['checkpoints']);
+        foreach ($response['data']['checkpoints'] as $checkpoints) {
+            $this->assertArrayHasKey('time', $checkpoints);
             $this->assertArrayHasKey('status', $checkpoints);
             $this->assertArrayHasKey('location', $checkpoints);
             $this->assertArrayHasKey('zip_code', $checkpoints);
