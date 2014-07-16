@@ -14,7 +14,7 @@ class LastCheckpointTest extends Base
         $this->assertArrayHasKey('courier_slug', $response['data']);
         $this->assertArrayHasKey('status', $response['data']);
         $this->assertArrayHasKey('checkpoint', $response['data']);
-        $this->assertArrayHasKey('checkpoint_time', $response['data']['checkpoint']);
+        $this->assertArrayHasKey('time', $response['data']['checkpoint']);
         $this->assertArrayHasKey('status', $response['data']['checkpoint']);
         $this->assertArrayHasKey('location', $response['data']['checkpoint']);
         $this->assertArrayHasKey('zip_code', $response['data']['checkpoint']);
