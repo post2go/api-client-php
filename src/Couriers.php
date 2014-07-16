@@ -3,21 +3,22 @@
 namespace ParcelGoClient;
 
 use ParcelGoClient\Exception\EmptyTrackingNumber;
+use ParcelGoClient\Response\CourierDetect;
 
 class Couriers extends Base
 {
 
     /**
-     * @return array|bool
+     * @return \ParcelGoClient\Response\Couriers
      */
     public function get()
     {
-        return $this->getRequest()->send('couriers', 'GET');
+        return (new Response($this->getRequest()->send('couriers', 'GET')))->getCouriers();
     }
 
     /**
      * @param $trackingNumber
-     * @return array
+     * @return CourierDetect
      * @throws Exception\EmptyTrackingNumber
      */
     public function detect($trackingNumber)
@@ -26,6 +27,6 @@ class Couriers extends Base
             throw new EmptyTrackingNumber();
         }
 
-        return $this->getRequest()->send('couriers/detect/' . $trackingNumber, 'GET');
+        return (new Response($this->getRequest()->send('couriers/detect/' . $trackingNumber, 'GET')))->courierDetect();
     }
 }

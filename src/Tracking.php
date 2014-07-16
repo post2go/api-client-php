@@ -24,8 +24,9 @@ class Tracking extends Base
         }
 
         $data = array('tracking_number' => $trackingNumber, 'courier_slug' => $courierSlug);
+        $raw = $this->getRequest()->send('trackings', 'POST', json_encode(array('tracking' => $data)));
 
-        return $this->request->send('trackings', 'POST', json_encode(array('tracking' => $data)));
+        return (new Response($raw))->trackingCreate();
     }
 
     /**

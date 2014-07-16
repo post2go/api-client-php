@@ -19,8 +19,6 @@ class TrackingTest extends Base
     public function testGet()
     {
         $response = $this->getClient()->tracking()->get(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
-//        var_dump($response);
-//        $this->expectOutputString('');
         $this->assertNotEmpty($response);
         $this->assertArrayHasKey('meta', $response);
         $this->assertEquals(array('code' => 200, 'message' => 'Success'), $response['meta']);
