@@ -35,7 +35,7 @@ The recommended way to install is through [Composer](http://getcomposer.org).
 curl -sS https://getcomposer.org/installer | php
 
 # Add as a dependency
-php composer.phar require parcelgo/parcelgo-client:~1.0
+php composer.phar require parcelgo/parcelgo-client:dev-master
 ```
 
 After installing, you need to require Composer's autoloader:
