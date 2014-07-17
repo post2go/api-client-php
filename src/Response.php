@@ -3,6 +3,7 @@ namespace ParcelGoClient;
 
 use ParcelGoClient\Exception\Response\AuthRequired;
 use ParcelGoClient\Exception\Response\BadRequest;
+use ParcelGoClient\Exception\Response\Base as BaseException;
 use ParcelGoClient\Exception\Response\MethodNotAllowed;
 use ParcelGoClient\Exception\Response\ServerError;
 use ParcelGoClient\Response\CourierDetect;
@@ -21,7 +22,7 @@ class Response
     public function __construct($data)
     {
         if (!array_key_exists('meta', $data)) {
-            //exception
+            throw new BaseException('Missing meta key in response');
         }
         switch ($data['meta']['code']) {
             case 400:
@@ -41,7 +42,7 @@ class Response
                 $this->data = $data['data'];
                 break;
             default:
-                break;
+               throw new BaseException('Unknown response code');
         }
     }
 
