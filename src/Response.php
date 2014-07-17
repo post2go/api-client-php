@@ -5,6 +5,11 @@ use ParcelGoClient\Exception\Response\AuthRequired;
 use ParcelGoClient\Exception\Response\BadRequest;
 use ParcelGoClient\Exception\Response\MethodNotAllowed;
 use ParcelGoClient\Exception\Response\ServerError;
+use ParcelGoClient\Response\CourierDetect;
+use ParcelGoClient\Response\LastCheckPoint;
+use ParcelGoClient\Response\Tracking;
+use ParcelGoClient\Response\TrackingCreate;
+use ParcelGoClient\Response\TrackingReactivate;
 
 class Response
 {
@@ -48,18 +53,51 @@ class Response
         return $this->data;
     }
 
-    public function getCouriers()
+    /**
+     * @return Response\Couriers
+     */
+    public function couriers()
     {
         return new \ParcelGoClient\Response\Couriers($this->getData());
     }
 
+    /**
+     * @return Response\CourierDetect
+     */
     public function courierDetect()
     {
-        return new \ParcelGoClient\Response\CourierDetect($this->getData());
+        return new CourierDetect($this->getData());
     }
 
+    /**
+     * @return Response\TrackingCreate
+     */
     public function trackingCreate()
     {
-        return new \ParcelGoClient\Response\TrackingCreate($this->getData());
+        return new TrackingCreate($this->getData());
+    }
+
+    /**
+     * @return Response\Tracking
+     */
+    public function tracking()
+    {
+        return new Tracking($this->getData());
+    }
+
+    /**
+     * @return Response\TrackingReactivate
+     */
+    public function trackingReactivate()
+    {
+        return new TrackingReactivate($this->getData());
+    }
+
+    /**
+     * @return LastCheckPoint
+     */
+    public function lastCheckPoint()
+    {
+        return new LastCheckPoint($this->getData());
     }
 }

@@ -13,7 +13,7 @@ class Couriers extends Base
      */
     public function get()
     {
-        return (new Response($this->getRequest()->send('couriers', 'GET')))->getCouriers();
+        return (new Response($this->getRequest()->send('couriers', 'GET')))->couriers();
     }
 
     /**

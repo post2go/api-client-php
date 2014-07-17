@@ -7,19 +7,18 @@ class TrackingCreate
 {
 
     /**
-     * @var Track[]
+     * @var Track
      */
     private $tracking;
 
     public function __construct($data)
     {
-        foreach ($data['tracking'] as $track) {
-            $this->tracking[] = new Track($track['courier_slug'], $track['tracking_number']);
-        }
+        $track = $data['tracking'];
+        $this->tracking = new Track($track['courier_slug'], $track['tracking_number']);
     }
 
     /**
-     * @return ValueObject\Track[]
+     * @return ValueObject\Track
      */
     public function getTracking()
     {

@@ -1,7 +1,7 @@
 <?php
 namespace ParcelGoClient\Response;
 
-use ParcelGoClient\Response\ValueObject\Track;
+use ParcelGoClient\Response\ValueObject\Courier;
 
 class Couriers
 {
@@ -13,7 +13,7 @@ class Couriers
     public function __construct($couriers)
     {
         foreach ($couriers as $courier) {
-            $this->couriers[] = new Track($courier['name'], $courier['slug'], $courier['country_code']);
+            $this->couriers[] = new Courier($courier['name'], $courier['slug'], $courier['country_code']);
         }
     }
 

@@ -11,7 +11,7 @@ class Tracking extends Base
      * @param $trackingNumber
      * @throws Exception\EmptySlug
      * @throws Exception\EmptyTrackingNumber
-     * @return array|bool
+     * @return \ParcelGoClient\Response\TrackingCreate
      */
     public function create($courierSlug, $trackingNumber)
     {
@@ -34,7 +34,7 @@ class Tracking extends Base
      * @param $trackingNumber
      * @throws Exception\EmptySlug
      * @throws Exception\EmptyTrackingNumber
-     * @return array|bool
+     * @return \ParcelGoClient\Response\Tracking
      */
     public function get($courierSlug, $trackingNumber)
     {
@@ -46,9 +46,19 @@ class Tracking extends Base
             throw new EmptyTrackingNumber;
         }
 
-        return $this->request->send('trackings/' . $courierSlug . '/' . $trackingNumber, 'GET');
+        $raw =  $this->request->send('trackings/' . $courierSlug . '/' . $trackingNumber, 'GET');
+        return (new Response($raw))->tracking();
     }
 
+    /**
+     * @param $courierSlug
+     * @param $trackingNumber
+     * @return Response\TrackingReactivate
+     * @throws Exception\EmptySlug
+     * @throws Exception\EmptyTrackingNumber
+     * @throws \Exception
+     * @throws \Guzzle\Common\Exception\GuzzleException
+     */
     public function reactivate($courierSlug, $trackingNumber)
     {
         if (empty($courierSlug)) {
@@ -59,7 +69,8 @@ class Tracking extends Base
             throw new EmptyTrackingNumber;
         }
 
-        return $this->request->send('trackings/' . $courierSlug . '/' . $trackingNumber . '/reactivate', 'POST');
+        $raw = $this->request->send('trackings/' . $courierSlug . '/' . $trackingNumber . '/reactivate', 'POST');
+        return (new Response($raw))->trackingReactivate();
     }
 
 }
