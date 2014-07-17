@@ -13,7 +13,8 @@ class Couriers extends Base
      */
     public function get()
     {
-        return (new Response($this->getRequest()->send('couriers', 'GET')))->couriers();
+        $response = new Response($this->getRequest()->send('couriers', 'GET'));
+        return $response->couriers();
     }
 
     /**
@@ -27,6 +28,7 @@ class Couriers extends Base
             throw new EmptyTrackingNumber();
         }
 
-        return (new Response($this->getRequest()->send('couriers/detect/' . $trackingNumber, 'GET')))->courierDetect();
+        $response = new Response($this->getRequest()->send('couriers/detect/' . $trackingNumber, 'GET'));
+        return $response->courierDetect();
     }
 }

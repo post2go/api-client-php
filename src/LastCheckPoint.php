@@ -26,7 +26,8 @@ class LastCheckPoint extends Base
             throw new EmptyTrackingNumber;
         }
 
-        $raw = $this->getRequest()->send('last-checkpoint/' . $courierSlug . '/' . $trackingNumber, 'GET');
-        return (new Response($raw))->lastCheckPoint();
+        $rawResponse = $this->getRequest()->send('last-checkpoint/' . $courierSlug . '/' . $trackingNumber, 'GET');
+        $response = new Response($rawResponse);
+        return $response->lastCheckPoint();
     }
 } 
