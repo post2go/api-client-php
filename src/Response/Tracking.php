@@ -22,7 +22,7 @@ class Tracking
     private $isDelivered;
 
     /**
-     * @var string
+     * @var \DateTime
      */
     private $lastCheck;
 
@@ -36,7 +36,7 @@ class Tracking
         $this->trackingNumber = $data['tracking_number'];
         $this->courierSlug = $data['courier_slug'];
         $this->isDelivered = $data['is_delivered'];
-        $this->lastCheck = $data['last_check'];
+        $this->lastCheck = new \DateTime($data['last_check']);
         foreach ($data['checkpoints'] as $checkpoint) {
             $this->checkpoints[] = new Checkpoint(
                 $checkpoint['time'],
@@ -69,13 +69,13 @@ class Tracking
     /**
      * @return string
      */
-    public function getIsDelivered()
+    public function isDelivered()
     {
         return $this->isDelivered;
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
     public function getLastCheck()
     {

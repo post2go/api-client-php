@@ -20,6 +20,9 @@ class CourierDetect
      */
     private $trackingNumber;
 
+    /**
+     * @param string $data
+     */
     public function __construct($data)
     {
         $this->total = $data['total'];
@@ -52,7 +55,5 @@ class CourierDetect
     {
         return $this->trackingNumber;
     }
-
-
 
 }

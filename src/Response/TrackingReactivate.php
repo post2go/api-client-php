@@ -14,6 +14,9 @@ class TrackingReactivate
      */
     private $courierSlug;
 
+    /**
+     * @param array $data
+     */
     public function __construct($data)
     {
         $this->trackingNumber = $data['tracking_number'];

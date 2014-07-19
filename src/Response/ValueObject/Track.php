@@ -16,8 +16,8 @@ class Track
 
 
     /**
-     * @param $courierSlug
-     * @param $trackingNumber
+     * @param string $courierSlug
+     * @param string $trackingNumber
      */
     public function __construct($courierSlug, $trackingNumber)
     {
@@ -40,7 +40,5 @@ class Track
     {
         return $this->trackingNumber;
     }
-
-
 
 }

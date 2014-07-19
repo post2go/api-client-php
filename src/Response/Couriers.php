@@ -10,6 +10,9 @@ class Couriers
      */
     private $couriers;
 
+    /**
+     * @param array $couriers
+     */
     public function __construct($couriers)
     {
         foreach ($couriers as $courier) {

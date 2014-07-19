@@ -20,8 +20,9 @@ class TrackingTest extends Base
         $this->assertInstanceOf('\ParcelGoClient\Response\Tracking', $response);
         $this->assertNotEmpty($response->getTrackingNumber());
         $this->assertNotEmpty($response->getCourierSlug());
-        $this->assertNotEmpty($response->getIsDelivered());
+        $this->assertNotEmpty($response->isDelivered());
         $this->assertNotEmpty($response->getLastCheck());
+        $this->assertInstanceOf('\DateTime', $response->getLastCheck());
         $this->assertNotEmpty($response->getCheckpoints());
         foreach ($response->getCheckpoints() as $checkpoints) {
             $this->assertNotEmpty($checkpoints->getTime());

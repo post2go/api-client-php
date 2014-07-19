@@ -115,6 +115,4 @@ class Checkpoint
         return $this->zipCode;
     }
 
-
-
 }

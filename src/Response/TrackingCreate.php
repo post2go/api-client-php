@@ -11,6 +11,9 @@ class TrackingCreate
      */
     private $tracking;
 
+    /**
+     * @param array $data
+     */
     public function __construct($data)
     {
         $track = $data['tracking'];

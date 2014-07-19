@@ -3,14 +3,21 @@ namespace ParcelGoClient\Response\ValueObject;
 
 class Courier
 {
+    /**
+     * @var string
+     */
     private $name;
+
+    /**
+     * @var string
+     */
     private $slug;
 
 
     /**
-     * @param $name
-     * @param $slug
-     * @param $countryCode
+     * @param string $name
+     * @param string $slug
+     * @param string $countryCode
      */
     public function __construct($name, $slug, $countryCode)
     {
@@ -20,7 +27,7 @@ class Courier
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getCountryCode()
     {
@@ -28,7 +35,7 @@ class Courier
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -36,12 +43,11 @@ class Courier
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getSlug()
     {
         return $this->slug;
     }
-
 
 }
