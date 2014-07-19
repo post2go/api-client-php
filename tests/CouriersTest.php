@@ -7,34 +7,26 @@ class CourierTest extends Base
     public function testGet()
     {
         $response = $this->getClient()->couriers()->get();
-        $this->assertNotEmpty($response);
-        $this->assertArrayHasKey('meta', $response);
-        $this->assertEquals(array('code' => 200, 'message' => 'Success'), $response['meta']);
-        $this->assertArrayHasKey('data', $response);
-        $this->assertNotEmpty($response['data']);
-        foreach ($response['data'] as $courier) {
-            $this->assertArrayHasKey('slug', $courier);
-            $this->assertArrayHasKey('name', $courier);
-            $this->assertArrayHasKey('country_code', $courier);
+        $this->assertInstanceOf('\ParcelGoClient\Response\Couriers', $response);
+        $this->assertNotEmpty($response->getCouriers());
+        foreach ($response->getCouriers() as $couriers) {
+            $this->assertNotEmpty($couriers->getName());
+            $this->assertNotEmpty($couriers->getSlug());
+            $this->assertNotEmpty($couriers->getCountryCode());
         }
-
-
     }
 
     public function testDetect()
     {
         $response = $this->getClient()->couriers()->detect(self::USPS_TRACKING_NUMBER);
-        $this->assertNotEmpty($response);
-        $this->assertArrayHasKey('meta', $response);
-        $this->assertEquals(array('code' => 200, 'message' => 'Success'), $response['meta']);
-        $this->assertArrayHasKey('total', $response['data']);
-        $this->assertArrayHasKey('tracking_number', $response['data']);
-        $this->assertArrayHasKey('couriers', $response['data']);
-        $this->assertNotEmpty($response['data']);
-        foreach ($response['data']['couriers'] as $courier) {
-            $this->assertArrayHasKey('slug', $courier);
-            $this->assertArrayHasKey('name', $courier);
-            $this->assertArrayHasKey('country_code', $courier);
+        $this->assertInstanceOf('\ParcelGoClient\Response\CourierDetect', $response);
+        $this->assertNotEmpty($response->getTotal());
+        $this->assertNotEmpty($response->getTrackingNumber());
+        $this->assertNotEmpty($response->getCouriers());
+        foreach ($response->getCouriers() as $couriers) {
+            $this->assertNotEmpty($couriers->getName());
+            $this->assertNotEmpty($couriers->getSlug());
+            $this->assertNotEmpty($couriers->getCountryCode());
         }
     }
 

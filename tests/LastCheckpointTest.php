@@ -7,20 +7,32 @@ class LastCheckpointTest extends Base
     public function testGet()
     {
         $response = $this->getClient()->lastCheckpoint()->get(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
-        $this->assertNotEmpty($response);
-        $this->assertArrayHasKey('meta', $response);
-        $this->assertEquals(array('code' => 200, 'message' => 'Success'), $response['meta']);
-        $this->assertArrayHasKey('tracking_number', $response['data']);
-        $this->assertArrayHasKey('courier_slug', $response['data']);
-        $this->assertArrayHasKey('status', $response['data']);
-        $this->assertArrayHasKey('checkpoint', $response['data']);
-        $this->assertArrayHasKey('time', $response['data']['checkpoint']);
-        $this->assertArrayHasKey('status', $response['data']['checkpoint']);
-        $this->assertArrayHasKey('location', $response['data']['checkpoint']);
-        $this->assertArrayHasKey('zip_code', $response['data']['checkpoint']);
-        $this->assertArrayHasKey('country_code', $response['data']['checkpoint']);
-        $this->assertArrayHasKey('courier_slug', $response['data']['checkpoint']);
-        $this->assertArrayHasKey('message', $response['data']['checkpoint']);
+
+        $this->assertInstanceOf('\ParcelGoClient\Response\LastCheckPoint', $response);
+        $this->assertNotEmpty($response->getTrackingNumber());
+        $this->assertNotEmpty($response->getCourierSlug());
+        $this->assertNotEmpty($response->getStatus());
+        $this->assertNotEmpty($response->getCheckpoint());
+        $checkpoint = ($response->getCheckpoint());
+        $this->assertNotEmpty($checkpoint->getTime());
+        $this->assertNotEmpty($checkpoint->getStatus());
+        $this->assertThat(
+            $checkpoint->getLocation(),
+            $this->logicalOr(
+                $this->logicalNot($this->isEmpty()),
+                $this->isNull()
+            )
+        );
+        $this->assertThat(
+            $checkpoint->getZipCode(),
+            $this->logicalOr(
+                $this->logicalNot($this->isEmpty()),
+                $this->isNull()
+            )
+        );
+        $this->assertNotEmpty($checkpoint->getCountryCode());
+        $this->assertNotEmpty($checkpoint->getCourierSlug());
+        $this->assertNotEmpty($checkpoint->getMessage());
     }
 
     /**

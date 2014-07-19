@@ -7,53 +7,53 @@ class TrackingTest extends Base
     public function testCreate()
     {
         $response = $this->getClient()->tracking()->create(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
-        $this->assertNotEmpty($response);
-        $this->assertArrayHasKey('meta', $response);
-        $this->assertArrayHasKey('data', $response);
-        $this->assertArrayHasKey('tracking', $response['data']);
-        $this->assertArrayHasKey('tracking_number', $response['data']['tracking']);
-        $this->assertArrayHasKey('courier_slug', $response['data']['tracking']);
-
+        $this->assertInstanceOf('\ParcelGoClient\Response\TrackingCreate', $response);
+        $this->assertNotEmpty($response->getTracking());
+        $track = $response->getTracking();
+        $this->assertNotEmpty($track->getCourierSlug());
+        $this->assertNotEmpty($track->getTrackingNumber());
     }
 
     public function testGet()
     {
         $response = $this->getClient()->tracking()->get(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
-//        var_dump($response);
-//        $this->expectOutputString('');
-        $this->assertNotEmpty($response);
-        $this->assertArrayHasKey('meta', $response);
-        $this->assertEquals(array('code' => 200, 'message' => 'Success'), $response['meta']);
-        $this->assertArrayHasKey('data', $response);
-        $this->assertArrayHasKey('tracking_number', $response['data']);
-        $this->assertArrayHasKey('courier_slug', $response['data']);
-        $this->assertArrayHasKey('is_active', $response['data']);
-        $this->assertArrayHasKey('is_delivered', $response['data']);
-        $this->assertArrayHasKey('last_check', $response['data']);
-        $this->assertArrayHasKey('checkpoints', $response['data']);
-        $this->assertNotEmpty($response['data']['checkpoints']);
-        foreach ($response['data']['checkpoints'] as $checkpoints) {
-            $this->assertArrayHasKey('time', $checkpoints);
-            $this->assertArrayHasKey('status', $checkpoints);
-            $this->assertArrayHasKey('location', $checkpoints);
-            $this->assertArrayHasKey('zip_code', $checkpoints);
-            $this->assertArrayHasKey('country_code', $checkpoints);
-            $this->assertArrayHasKey('courier_slug', $checkpoints);
-            $this->assertArrayHasKey('message', $checkpoints);
+        $this->assertInstanceOf('\ParcelGoClient\Response\Tracking', $response);
+        $this->assertNotEmpty($response->getTrackingNumber());
+        $this->assertNotEmpty($response->getCourierSlug());
+        $this->assertNotEmpty($response->isDelivered());
+        $this->assertNotEmpty($response->getLastCheck());
+        $this->assertInstanceOf('\DateTime', $response->getLastCheck());
+        $this->assertNotEmpty($response->getCheckpoints());
+        foreach ($response->getCheckpoints() as $checkpoints) {
+            $this->assertNotEmpty($checkpoints->getTime());
+            $this->assertNotEmpty($checkpoints->getStatus());
+            $this->assertThat(
+                $checkpoints->getLocation(),
+                $this->logicalOr(
+                    $this->logicalNot($this->isEmpty()),
+                    $this->isNull()
+                )
+            );
+            $this->assertThat(
+                $checkpoints->getZipCode(),
+                $this->logicalOr(
+                    $this->logicalNot($this->isEmpty()),
+                    $this->isNull()
+                )
+            );
+            $this->assertNotEmpty($checkpoints->getCountryCode());
+            $this->assertNotEmpty($checkpoints->getCourierSlug());
+            $this->assertNotEmpty($checkpoints->getMessage());
         }
     }
 
     public function testReactivate()
     {
         $response = $this->getClient()->tracking()->reactivate(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
-        $this->assertNotEmpty($response);
-        $this->assertArrayHasKey('meta', $response);
-        $this->assertArrayHasKey('data', $response);
-        $this->assertNotEmpty($response['data']);
 
-        $this->assertArrayHasKey('tracking_number', $response['data']);
-        $this->assertArrayHasKey('courier_slug', $response['data']);
-        $this->assertArrayHasKey('is_active', $response['data']);
+        $this->assertInstanceOf('\ParcelGoClient\Response\TrackingReactivate', $response);
+        $this->assertNotEmpty($response->getCourierSlug());
+        $this->assertNotEmpty($response->getTrackingNumber());
     }
 
 
@@ -61,7 +61,8 @@ class TrackingTest extends Base
      * @expectedException \ParcelGoClient\Exception\EmptyTrackingNumber
      * @throws \ParcelGoClient\Exception\EmptyTrackingNumber
      */
-    public function testGetEmptyTrackingNumber(){
+    public function testGetEmptyTrackingNumber()
+    {
         $this->getClient()->tracking()->get(self::USPS_SLUG, '');
     }
 
@@ -69,7 +70,8 @@ class TrackingTest extends Base
      * @expectedException \ParcelGoClient\Exception\EmptySlug
      * @throws \ParcelGoClient\Exception\EmptySlug
      */
-    public function testGetEmptySlug(){
+    public function testGetEmptySlug()
+    {
         $this->getClient()->tracking()->get('', '');
     }
 
@@ -77,7 +79,8 @@ class TrackingTest extends Base
      * @expectedException \ParcelGoClient\Exception\EmptyTrackingNumber
      * @throws \ParcelGoClient\Exception\EmptyTrackingNumber
      */
-    public function testCreateEmptyTrackingNumber(){
+    public function testCreateEmptyTrackingNumber()
+    {
         $this->getClient()->tracking()->create(self::USPS_SLUG, '');
     }
 
@@ -85,7 +88,8 @@ class TrackingTest extends Base
      * @expectedException \ParcelGoClient\Exception\EmptySlug
      * @throws \ParcelGoClient\Exception\EmptySlug
      */
-    public function testCreateEmptySlug(){
+    public function testCreateEmptySlug()
+    {
         $this->getClient()->tracking()->create('', '');
     }
 
@@ -93,7 +97,8 @@ class TrackingTest extends Base
      * @expectedException \ParcelGoClient\Exception\EmptyTrackingNumber
      * @throws \ParcelGoClient\Exception\EmptyTrackingNumber
      */
-    public function testReactivateEmptyTrackingNumber(){
+    public function testReactivateEmptyTrackingNumber()
+    {
         $this->getClient()->tracking()->reactivate(self::USPS_SLUG, '');
     }
 
@@ -101,7 +106,8 @@ class TrackingTest extends Base
      * @expectedException \ParcelGoClient\Exception\EmptySlug
      * @throws \ParcelGoClient\Exception\EmptySlug
      */
-    public function testReactivateEmptySlug(){
+    public function testReactivateEmptySlug()
+    {
         $this->getClient()->tracking()->reactivate('', '');
     }
 

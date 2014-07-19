@@ -14,7 +14,7 @@ class LastCheckPoint extends Base
      *
      * @throws Exception\EmptySlug
      * @throws Exception\EmptyTrackingNumber
-     * @return mixed
+     * @return \ParcelGoClient\Response\LastCheckPoint
      */
     public function get($courierSlug, $trackingNumber)
     {
@@ -26,6 +26,8 @@ class LastCheckPoint extends Base
             throw new EmptyTrackingNumber;
         }
 
-        return  $this->getRequest()->send('last-checkpoint/' . $courierSlug . '/' . $trackingNumber, 'GET');
+        $rawResponse = $this->getRequest()->send('last-checkpoint/' . $courierSlug . '/' . $trackingNumber, 'GET');
+        $response = new Response($rawResponse);
+        return $response->lastCheckPoint();
     }
 } 

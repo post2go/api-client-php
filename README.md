@@ -26,6 +26,7 @@ $parcelgoClient->tracking()->reactivate($courier, $trackingNumber);
 $parcelgoClient->lastCheckpoint($courier, $trackingNumber);
 ```
 
+See [examples](https://github.com/parcelgo/api-client-php/tree/master/examples) for more info 
 ### Installing via Composer
 
 The recommended way to install is through [Composer](http://getcomposer.org).
