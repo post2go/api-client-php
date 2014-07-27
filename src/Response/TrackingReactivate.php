@@ -1,42 +1,31 @@
 <?php
 namespace ParcelGoClient\Response;
 
+use ParcelGoClient\Response\ValueObject\Track;
+
 class TrackingReactivate
 {
 
     /**
-     * @var string
+     * @var Track
      */
-    private $trackingNumber;
-
-    /**
-     * @var string
-     */
-    private $courierSlug;
+    private $tracking;
 
     /**
      * @param array $data
      */
     public function __construct($data)
     {
-        $this->trackingNumber = $data['tracking_number'];
-        $this->courierSlug = $data['courier_slug'];
+        $track = $data['tracking'];
+        $this->tracking = new Track($track['courier_slug'], $track['tracking_number']);
     }
 
     /**
-     * @return string
+     * @return ValueObject\Track
      */
-    public function getCourierSlug()
+    public function getTracking()
     {
-        return $this->courierSlug;
-    }
-
-    /**
-     * @return string
-     */
-    public function getTrackingNumber()
-    {
-        return $this->trackingNumber;
+        return $this->tracking;
     }
 
 

@@ -52,8 +52,10 @@ class TrackingTest extends Base
         $response = $this->getClient()->tracking()->reactivate(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
 
         $this->assertInstanceOf('\ParcelGoClient\Response\TrackingReactivate', $response);
-        $this->assertNotEmpty($response->getCourierSlug());
-        $this->assertNotEmpty($response->getTrackingNumber());
+        $this->assertNotEmpty($response->getTracking());
+        $track = $response->getTracking();
+        $this->assertNotEmpty($track->getCourierSlug());
+        $this->assertNotEmpty($track->getTrackingNumber());
     }
 
 
