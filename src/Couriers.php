@@ -28,7 +28,12 @@ class Couriers extends Base
             throw new EmptyTrackingNumber();
         }
 
-        $response = new Response($this->getRequest()->send('couriers/detect/' . $trackingNumber, 'GET'));
+        $query = http_build_query(
+            array(
+                'tracking_number' => $trackingNumber
+            )
+        );
+        $response = new Response($this->getRequest()->send('couriers/detect?' . $query, 'GET'));
         return $response->courierDetect();
     }
 }

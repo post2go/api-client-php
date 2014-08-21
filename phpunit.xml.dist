@@ -27,5 +27,6 @@
 
     <php>
         <const name="API_KEY" value="INSERT YOUR API KEY HERE"/>
+        <const name="END_POINT" value="http://api.parcelgo.ru"/>
     </php>
 </phpunit>

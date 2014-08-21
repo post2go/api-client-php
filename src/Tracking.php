@@ -47,8 +47,15 @@ class Tracking extends Base
             throw new EmptyTrackingNumber;
         }
 
-        $rawResponse =  $this->request->send('trackings/' . $courierSlug . '/' . $trackingNumber, 'GET');
+        $query = http_build_query(
+            array(
+                'tracking_number' => $trackingNumber
+            )
+        );
+
+        $rawResponse =  $this->request->send('trackings/' . $courierSlug . '?' . $query, 'GET');
         $response = new Response($rawResponse);
+
         return $response->tracking();
     }
 
@@ -71,8 +78,10 @@ class Tracking extends Base
             throw new EmptyTrackingNumber;
         }
 
-        $rawResponse = $this->request->send('trackings/' . $courierSlug . '/' . $trackingNumber . '/reactivate', 'POST');
+        $data = array('tracking_number' => $trackingNumber);
+        $rawResponse = $this->request->send('trackings/' . $courierSlug . '/reactivate', 'POST', json_encode($data));
         $response = new Response($rawResponse);
+
         return $response->trackingReactivate();
     }
 
