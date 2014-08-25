@@ -7,6 +7,7 @@ use ParcelGoClient\Exception\Response\Base as BaseException;
 use ParcelGoClient\Exception\Response\MethodNotAllowed;
 use ParcelGoClient\Exception\Response\ServerError;
 use ParcelGoClient\Response\CourierDetect;
+use ParcelGoClient\Response\Couriers;
 use ParcelGoClient\Response\LastCheckPoint;
 use ParcelGoClient\Response\Tracking;
 use ParcelGoClient\Response\TrackingCreate;
@@ -21,29 +22,27 @@ class Response
 
     public function __construct($data)
     {
-        if (!array_key_exists('meta', $data)) {
-            throw new BaseException('Missing meta key in response');
+        if (empty($data['error'])) {
+            $this->data = $data['result'];
+        } else {
+            switch ($data['meta']['code']) {
+                case 400:
+                    throw new BadRequest($data['error']['message'], $data['error']['code']);
+                    break;
+                case 500:
+                    throw new ServerError($data['error']['message'], $data['error']['code']);
+                    break;
+                case 401:
+                    throw new AuthRequired($data['error']['message'], $data['error']['code']);
+                    break;
+                case 405:
+                    throw new MethodNotAllowed($data['error']['message'], $data['error']['code']);
+                    break;
+                default:
+                    throw new BaseException($data['error']['message'], $data['error']['code']);
+            }
         }
-        switch ($data['meta']['code']) {
-            case 400:
-                throw new BadRequest($data['meta']['error_message'], $data['meta']['code']);
-                break;
-            case 500:
-                throw new ServerError($data['meta']['error_message'], $data['meta']['code']);
-                break;
-            case 401:
-                throw new AuthRequired($data['meta']['error_message'], $data['meta']['code']);
-                break;
-            case 405:
-                throw new MethodNotAllowed($data['meta']['error_message'], $data['meta']['code']);
-                break;
-            case 200:
-            case 201:
-                $this->data = $data['data'];
-                break;
-            default:
-               throw new BaseException('Unknown response code');
-        }
+
     }
 
     /**
@@ -59,7 +58,7 @@ class Response
      */
     public function couriers()
     {
-        return new \ParcelGoClient\Response\Couriers($this->getData());
+        return new Couriers($this->getData());
     }
 
     /**

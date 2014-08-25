@@ -23,10 +23,8 @@ class Tracking extends Base
             throw new EmptyTrackingNumber;
         }
 
-        $data = array('tracking_number' => $trackingNumber, 'courier_slug' => $courierSlug);
-        $rawResponse = $this->getRequest()->send('trackings', 'POST', json_encode(array('tracking' => $data)));
-        $response = new Response($rawResponse);
-
+        $tracking = array('tracking_number' => $trackingNumber, 'courier_slug' => $courierSlug);
+        $response = new Response($this->getRequest()->call('addTracking', array('tracking' => $tracking)));
         return $response->trackingCreate();
     }
 
@@ -47,8 +45,8 @@ class Tracking extends Base
             throw new EmptyTrackingNumber;
         }
 
-        $rawResponse =  $this->request->send('trackings/' . $courierSlug . '/' . $trackingNumber, 'GET');
-        $response = new Response($rawResponse);
+        $tracking = array('tracking_number' => $trackingNumber, 'courier_slug' => $courierSlug);
+        $response = new Response($this->getRequest()->call('getTrackingInfo', $tracking));
         return $response->tracking();
     }
 
@@ -71,8 +69,8 @@ class Tracking extends Base
             throw new EmptyTrackingNumber;
         }
 
-        $rawResponse = $this->request->send('trackings/' . $courierSlug . '/' . $trackingNumber . '/reactivate', 'POST');
-        $response = new Response($rawResponse);
+        $tracking = array('tracking_number' => $trackingNumber, 'courier_slug' => $courierSlug);
+        $response = new Response($this->getRequest()->call('reactivateTracking', $tracking));
         return $response->trackingReactivate();
     }
 

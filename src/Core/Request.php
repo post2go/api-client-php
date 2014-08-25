@@ -2,6 +2,7 @@
 namespace ParcelGoClient\Core;
 
 use Guzzle\Common\Exception\GuzzleException;
+use Guzzle\Http\Client;
 use Guzzle\Http\Exception\BadResponseException;
 use ParcelGoClient\Exception\EmptyApiKey;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -9,29 +10,28 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class Request
 {
     private $apiUrl = 'http://api.parcelgo.ru';
+    private $apiEndpoint = '/v2/jsonrpc';
     protected $apiKey = '';
-    private $apiVersion = 'v1';
     protected $guzzlePlugins = array();
     private $client;
 
     /**
      * @param string $apiKey
-     * @param string $endpoint
+     * @param string $apiUrl
      * @param array $guzzlePlugins
      * @throws \ParcelGoClient\Exception\EmptyApiKey
      */
-    public function __construct($apiKey, $endpoint = '', $guzzlePlugins = array())
+    public function __construct($apiKey, $apiUrl = '', $guzzlePlugins = array())
     {
         if (empty($apiKey)) {
             throw new EmptyApiKey();
         }
         $this->apiKey = $apiKey;
-        if ($endpoint) {
-            $this->apiUrl = $endpoint;
+        if ($apiUrl) {
+            $this->apiUrl = $apiUrl;
         }
+        $this->client = new Client();
         $this->guzzlePlugins = $guzzlePlugins;
-        $this->client = new \Guzzle\Http\Client();
-
         if (count($this->guzzlePlugins) > 0) {
             foreach ($this->guzzlePlugins as $plugin) {
                 if ($plugin instanceof EventSubscriberInterface) {
@@ -42,39 +42,30 @@ class Request
     }
 
     /**
-     * @param $url
-     * @param $requestType
-     * @param array $data
-     * @return array|bool|float|int|string
+     * @param $method
+     * @param array $params
+     * @param int $id
      * @throws \Exception
      * @throws \Guzzle\Common\Exception\GuzzleException
+     * @internal param array $data
+     * @return array|bool|float|int|string
      */
-    public function send($url, $requestType, $data = array())
+    public function call($method, $params = array(), $id = 1)
     {
         $headers = array(
             'x-authorization-token' => $this->apiKey,
             'content-type' => 'application/json'
         );
 
-        switch (strtoupper($requestType)) {
-            case "GET":
-                $request = $this->client->get(
-                    $this->apiUrl . '/' . $this->apiVersion . '/' . $url,
-                    $headers,
-                    array('query' => $data)
-                );
-                break;
-            case "POST":
-                $request = $this->client->post($this->apiUrl . '/' . $this->apiVersion . '/' . $url, $headers, $data);
-                break;
-            case "PUT":
-                $request = $this->client->put($this->apiUrl . '/' . $this->apiVersion . '/' . $url, $headers, $data);
-                break;
-            default:
-                return false;
-        }
+        $request = array(
+            'jsonrpc' => '2.0',
+            'method' => $method,
+            'params' => $params,
+            'id' => $id
+        );
 
         try {
+            $request = $this->client->post($this->apiUrl . $this->apiEndpoint, $headers, json_encode($request));
             $response = $request->send()->json();
         } catch (BadResponseException $exception) {
             $response = $exception->getResponse()->json();
