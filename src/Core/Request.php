@@ -45,12 +45,13 @@ class Request
      * @param $method
      * @param array $params
      * @param int $id
+     * @param null $endpoint
      * @throws \Exception
      * @throws \Guzzle\Common\Exception\GuzzleException
      * @internal param array $data
      * @return array|bool|float|int|string
      */
-    public function call($method, $params = array(), $id = 1)
+    public function call($method, $params = array(), $id = 1, $endpoint = null)
     {
         $headers = array(
             'x-authorization-token' => $this->apiKey,
@@ -64,8 +65,10 @@ class Request
             'id' => $id
         );
 
+        $endpoint = !empty($endpoint) ? $endpoint : $this->apiEndpoint;
+
         try {
-            $request = $this->client->post($this->apiUrl . $this->apiEndpoint, $headers, json_encode($request));
+            $request = $this->client->post($this->apiUrl . $endpoint, $headers, json_encode($request));
             $response = $request->send()->json();
         } catch (BadResponseException $exception) {
             $response = $exception->getResponse()->json();
