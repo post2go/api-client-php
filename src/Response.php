@@ -6,12 +6,6 @@ use ParcelGoClient\Exception\Response\BadRequest;
 use ParcelGoClient\Exception\Response\Base as BaseException;
 use ParcelGoClient\Exception\Response\MethodNotAllowed;
 use ParcelGoClient\Exception\Response\ServerError;
-use ParcelGoClient\Response\CourierDetect;
-use ParcelGoClient\Response\Couriers;
-use ParcelGoClient\Response\LastCheckPoint;
-use ParcelGoClient\Response\Tracking;
-use ParcelGoClient\Response\TrackingCreate;
-use ParcelGoClient\Response\TrackingReactivate;
 
 class Response
 {
@@ -25,7 +19,7 @@ class Response
         if (empty($data['error'])) {
             $this->data = $data['result'];
         } else {
-            switch ($data['meta']['code']) {
+            switch ($data['error']['code']) {
                 case 400:
                     throw new BadRequest($data['error']['message'], $data['error']['code']);
                     break;
@@ -58,7 +52,7 @@ class Response
      */
     public function couriers()
     {
-        return new Couriers($this->getData());
+        return new Response\Couriers($this->getData());
     }
 
     /**
@@ -66,7 +60,7 @@ class Response
      */
     public function courierDetect()
     {
-        return new CourierDetect($this->getData());
+        return new Response\CourierDetect($this->getData());
     }
 
     /**
@@ -74,7 +68,7 @@ class Response
      */
     public function trackingCreate()
     {
-        return new TrackingCreate($this->getData());
+        return new Response\TrackingCreate($this->getData());
     }
 
     /**
@@ -82,7 +76,7 @@ class Response
      */
     public function tracking()
     {
-        return new Tracking($this->getData());
+        return new Response\Tracking($this->getData());
     }
 
     /**
@@ -90,14 +84,14 @@ class Response
      */
     public function trackingReactivate()
     {
-        return new TrackingReactivate($this->getData());
+        return new Response\TrackingReactivate($this->getData());
     }
 
     /**
-     * @return LastCheckPoint
+     * @return Response\LastCheckPoint
      */
     public function lastCheckPoint()
     {
-        return new LastCheckPoint($this->getData());
+        return new Response\LastCheckPoint($this->getData());
     }
 }
