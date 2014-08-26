@@ -10,7 +10,7 @@ class ResponseTest extends Base
      */
     public function testBadRequestCode()
     {
-        new Response(array('error' => array('code' => 400, 'message' => 'Bad Request')));
+        new Response(array('error' => array('code' => -32700, 'message' => 'Bad Request')));
     }
 
     /**
@@ -18,7 +18,7 @@ class ResponseTest extends Base
      */
     public function testServerErrorCode()
     {
-        new Response(array('error' => array('code' => 500, 'message' => 'ServerError')));
+        new Response(array('error' => array('code' => -32603, 'message' => 'ServerError')));
     }
 
     /**
@@ -34,7 +34,7 @@ class ResponseTest extends Base
      */
     public function testMethodNotAllowedCode()
     {
-        new Response(array('error' => array('code' => 405, 'message' => 'MethodNotAllowed')));
+        new Response(array('error' => array('code' => -32601, 'message' => 'MethodNotAllowed')));
     }
 
     /**

@@ -1,9 +1,10 @@
 <?php
 namespace ParcelGoClient;
 
+use ParcelGoClient\Exception\Response\Base as BaseException;
+use ParcelGoClient\Exception\Response\AccessDenied;
 use ParcelGoClient\Exception\Response\AuthRequired;
 use ParcelGoClient\Exception\Response\BadRequest;
-use ParcelGoClient\Exception\Response\Base as BaseException;
 use ParcelGoClient\Exception\Response\MethodNotAllowed;
 use ParcelGoClient\Exception\Response\ServerError;
 
@@ -27,17 +28,22 @@ class Response
             }
 
             switch ($data['error']['code']) {
-                case 400:
+                case -32700:
+                case -32600:
+                case -32602:
                     throw new BadRequest($data['error']['message'], $data['error']['code']);
                     break;
-                case 500:
+                case -32601:
+                    throw new MethodNotAllowed($data['error']['message'], $data['error']['code']);
+                    break;
+                case -32603:
                     throw new ServerError($data['error']['message'], $data['error']['code']);
                     break;
                 case 401:
                     throw new AuthRequired($data['error']['message'], $data['error']['code']);
                     break;
-                case 405:
-                    throw new MethodNotAllowed($data['error']['message'], $data['error']['code']);
+                case 403:
+                    throw new AccessDenied($data['error']['message'], $data['error']['code']);
                     break;
                 default:
                     throw new BaseException($data['error']['message'], $data['error']['code']);
