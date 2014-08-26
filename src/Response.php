@@ -17,7 +17,7 @@ class Response
     public function __construct($data)
     {
         if (empty($data['error'])) {
-            $this->data = $data['result'];
+            $this->data = !empty($data['result']) ? $data['result'] : null;
         } else {
             switch ($data['error']['code']) {
                 case 400:
