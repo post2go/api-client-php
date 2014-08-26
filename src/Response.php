@@ -16,9 +16,16 @@ class Response
 
     public function __construct($data)
     {
-        if (empty($data['error'])) {
-            $this->data = !empty($data['result']) ? $data['result'] : null;
+        if (empty($data['error']) && !empty($data['result'])) {
+            $this->data = $data['result'];
         } else {
+            if (empty($data['error']['code'])) {
+                $data['error']['code'] = 0;
+            }
+            if (empty($data['error']['message'])) {
+                $data['error']['message'] = 'Unknown error';
+            }
+
             switch ($data['error']['code']) {
                 case 400:
                     throw new BadRequest($data['error']['message'], $data['error']['code']);

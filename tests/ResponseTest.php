@@ -10,7 +10,7 @@ class ResponseTest extends Base
      */
     public function testBadRequestCode()
     {
-        new Response(array('meta' => array('code' => 400, 'error_message' => 'Bad Request')));
+        new Response(array('error' => array('code' => 400, 'message' => 'Bad Request')));
     }
 
     /**
@@ -18,7 +18,7 @@ class ResponseTest extends Base
      */
     public function testServerErrorCode()
     {
-        new Response(array('meta' => array('code' => 500, 'error_message' => 'ServerError')));
+        new Response(array('error' => array('code' => 500, 'message' => 'ServerError')));
     }
 
     /**
@@ -26,7 +26,7 @@ class ResponseTest extends Base
      */
     public function testAuthRequiredCode()
     {
-        new Response(array('meta' => array('code' => 401, 'error_message' => 'AuthRequired')));
+        new Response(array('error' => array('code' => 401, 'message' => 'AuthRequired')));
     }
 
     /**
@@ -34,7 +34,7 @@ class ResponseTest extends Base
      */
     public function testMethodNotAllowedCode()
     {
-        new Response(array('meta' => array('code' => 405, 'error_message' => 'MethodNotAllowed')));
+        new Response(array('error' => array('code' => 405, 'message' => 'MethodNotAllowed')));
     }
 
     /**
@@ -50,7 +50,7 @@ class ResponseTest extends Base
      */
     public function testUnknownCode()
     {
-        new Response(array('meta' => array('code' => 459)));
+        new Response(array('error' => array('code' => 459)));
     }
 
 }
