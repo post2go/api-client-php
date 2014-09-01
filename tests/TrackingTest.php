@@ -14,11 +14,9 @@ class TrackingTest extends Base
         $this->assertNotEmpty($track->getTrackingNumber());
     }
 
-    /**
-     * @depends testCreate
-     */
     public function testEdit()
     {
+        $this->createTrack();
         $trackingRequest = new \ParcelGoClient\Core\RequestParam\Tracking();
         $trackingRequest->setTitle('test edit title1');
         $response = $this->getClient()->tracking()->edit(self::USPS_SLUG, self::USPS_TRACKING_NUMBER, $trackingRequest);
@@ -29,11 +27,9 @@ class TrackingTest extends Base
         $this->assertNotEmpty($track->getTrackingNumber());
     }
 
-    /**
-     * @depends testCreate
-     */
     public function testGet()
     {
+        $this->createTrack();
         $response = $this->getClient()->tracking()->get(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
         $this->assertInstanceOf('\ParcelGoClient\Response\Tracking', $response);
         $this->assertNotEmpty($response->getTrackingNumber());
@@ -65,11 +61,9 @@ class TrackingTest extends Base
         }
     }
 
-    /**
-     * @depends testCreate
-     */
     public function testReactivate()
     {
+        $this->createTrack();
         $response = $this->getClient()->tracking()->reactivate(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
 
         $this->assertInstanceOf('\ParcelGoClient\Response\TrackingSimple', $response);
@@ -79,11 +73,9 @@ class TrackingTest extends Base
         $this->assertNotEmpty($track->getTrackingNumber());
     }
 
-    /**
-     * @depends testCreate
-     */
     public function testDelete()
     {
+        $this->createTrack();
         $response = $this->getClient()->tracking()->delete(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
         $this->assertInstanceOf('\ParcelGoClient\Response\TrackingSimple', $response);
         $this->assertNotEmpty($response->getTracking());
