@@ -19,7 +19,14 @@ abstract class Base extends \PHPUnit_Framework_TestCase
         if ($this->client === null) {
             $this->client = new \ParcelGoClient\Manager($apiKey);
         }
+
+
         return $this->client;
+    }
+
+    public function createTrack()
+    {
+        $this->getClient()->tracking()->create(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
     }
 
 }

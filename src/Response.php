@@ -77,11 +77,27 @@ class Response
     }
 
     /**
-     * @return Response\TrackingCreate
+     * @return Response\TrackingSimple
      */
     public function trackingCreate()
     {
-        return new Response\TrackingCreate($this->getData());
+        return new Response\TrackingSimple($this->getData());
+    }
+
+    /**
+     * @return Response\TrackingSimple
+     */
+    public function trackingEdit()
+    {
+        return new Response\TrackingSimple($this->getData());
+    }
+
+    /**
+     * @return Response\TrackingSimple
+     */
+    public function trackingDelete()
+    {
+        return new Response\TrackingSimple($this->getData());
     }
 
     /**
@@ -93,11 +109,11 @@ class Response
     }
 
     /**
-     * @return Response\TrackingReactivate
+     * @return Response\TrackingSimple
      */
     public function trackingReactivate()
     {
-        return new Response\TrackingReactivate($this->getData());
+        return new Response\TrackingSimple($this->getData());
     }
 
     /**

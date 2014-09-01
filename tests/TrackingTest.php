@@ -7,7 +7,19 @@ class TrackingTest extends Base
     public function testCreate()
     {
         $response = $this->getClient()->tracking()->create(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
-        $this->assertInstanceOf('\ParcelGoClient\Response\TrackingCreate', $response);
+        $this->assertInstanceOf('\ParcelGoClient\Response\TrackingSimple', $response);
+        $this->assertNotEmpty($response->getTracking());
+        $track = $response->getTracking();
+        $this->assertNotEmpty($track->getCourierSlug());
+        $this->assertNotEmpty($track->getTrackingNumber());
+    }
+
+    public function testEdit()
+    {
+        $trackingRequest = new \ParcelGoClient\Core\RequestParam\Tracking();
+        $trackingRequest->setTitle('test edit title1');
+        $response = $this->getClient()->tracking()->edit(self::USPS_SLUG, self::USPS_TRACKING_NUMBER, $trackingRequest);
+        $this->assertInstanceOf('\ParcelGoClient\Response\TrackingSimple', $response);
         $this->assertNotEmpty($response->getTracking());
         $track = $response->getTracking();
         $this->assertNotEmpty($track->getCourierSlug());
@@ -51,13 +63,22 @@ class TrackingTest extends Base
     {
         $response = $this->getClient()->tracking()->reactivate(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
 
-        $this->assertInstanceOf('\ParcelGoClient\Response\TrackingReactivate', $response);
+        $this->assertInstanceOf('\ParcelGoClient\Response\TrackingSimple', $response);
         $this->assertNotEmpty($response->getTracking());
         $track = $response->getTracking();
         $this->assertNotEmpty($track->getCourierSlug());
         $this->assertNotEmpty($track->getTrackingNumber());
     }
 
+    public function testDelete()
+    {
+        $response = $this->getClient()->tracking()->delete(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
+        $this->assertInstanceOf('\ParcelGoClient\Response\TrackingSimple', $response);
+        $this->assertNotEmpty($response->getTracking());
+        $track = $response->getTracking();
+        $this->assertNotEmpty($track->getCourierSlug());
+        $this->assertNotEmpty($track->getTrackingNumber());
+    }
 
     /**
      * @expectedException \ParcelGoClient\Exception\EmptyTrackingNumber

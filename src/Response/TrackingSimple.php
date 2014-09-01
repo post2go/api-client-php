@@ -3,7 +3,7 @@ namespace ParcelGoClient\Response;
 
 use ParcelGoClient\Response\ValueObject\Track;
 
-class TrackingCreate
+class TrackingSimple
 {
 
     /**
