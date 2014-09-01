@@ -14,12 +14,11 @@ abstract class Base extends \PHPUnit_Framework_TestCase
     public function getClient()
     {
         if (!($apiKey = getenv('API_KEY'))) {
-            $apiKey = '1648746cb7aa2a97e9061e8d651d7be7b01901d9019d4c0df87488a8799709d99d31a4d2913da104';
+            $apiKey = API_KEY;
         }
         if ($this->client === null) {
             $this->client = new \ParcelGoClient\Manager($apiKey);
         }
-
 
         return $this->client;
     }
