@@ -78,6 +78,7 @@ class TrackingTest extends Base
         $track = $response->getTracking();
         $this->assertNotEmpty($track->getCourierSlug());
         $this->assertNotEmpty($track->getTrackingNumber());
+        $this->createTrack();
     }
 
     /**

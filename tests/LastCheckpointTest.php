@@ -6,8 +6,6 @@ class LastCheckpointTest extends Base
 
     public function testGet()
     {
-        $this->createTrack();
-
         $response = $this->getClient()->lastCheckpoint()->get(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
 
         $this->assertInstanceOf('\ParcelGoClient\Response\LastCheckPoint', $response);
