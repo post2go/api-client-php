@@ -13,4 +13,4 @@ matrix:
   fast_finish: true
 env:
   matrix:
-  - secure: d37XgubdA9x9b0W447raSVNfUsyBMGGFEsg4lxYmqlptS/6PSihlC9CYC21zKEMC+MlXC7PNhZjEEdzOjLbnRiUTX0XEh/GLrYZtBYDDXu5Uucc2zeQWfduAlqWubmC8z8N/BjTZGjyEcKCg9NQgWf3fEl7F0alclJyr6kPB8GI=
+  - secure: VyCVYebILLYIHzPMASb/1YPDBl/2HgoqS0gv6/5zSAOIcAuUkxtnLUEV1CEdpSC24iVfuflNlGzp2bnc1hr0MC3tpaNVYQgzz0RlsJLRgLIm66xBjVBlUsPRrVXvverE6CHd0wp1P/d8jd1Iv6E+M9JvMn6ERZxDvrYNQraMp9Q=
