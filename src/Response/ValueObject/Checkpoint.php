@@ -1,5 +1,5 @@
 <?php
-namespace ParcelGoClient\Response\ValueObject;
+namespace Post2GoClient\Response\ValueObject;
 
 class Checkpoint
 {

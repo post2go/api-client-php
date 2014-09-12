@@ -1,5 +1,5 @@
 <?php
-namespace ParcelGoClient\Tests;
+namespace Post2GoClient\Tests;
 
 abstract class Base extends \PHPUnit_Framework_TestCase
 {
@@ -7,7 +7,7 @@ abstract class Base extends \PHPUnit_Framework_TestCase
     const USPS_SLUG = 'usps';
     const USPS_TRACKING_NUMBER = 'EC208786464US';
     /**
-     * @var \ParcelGoClient\Manager
+     * @var \Post2GoClient\Manager
      */
     private $client = null;
 
@@ -17,7 +17,7 @@ abstract class Base extends \PHPUnit_Framework_TestCase
             $apiKey = API_KEY;
         }
         if ($this->client === null) {
-            $this->client = new \ParcelGoClient\Manager($apiKey);
+            $this->client = new \Post2GoClient\Manager($apiKey);
         }
 
         return $this->client;

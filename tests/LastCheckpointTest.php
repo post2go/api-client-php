@@ -1,5 +1,5 @@
 <?php
-namespace ParcelGoClient\Tests;
+namespace Post2GoClient\Tests;
 
 class LastCheckpointTest extends Base
 {
@@ -36,16 +36,16 @@ class LastCheckpointTest extends Base
     }
 
     /**
-     * @expectedException \ParcelGoClient\Exception\EmptyTrackingNumber
-     * @throws \ParcelGoClient\Exception\EmptyTrackingNumber
+     * @expectedException \Post2GoClient\Exception\EmptyTrackingNumber
+     * @throws \Post2GoClient\Exception\EmptyTrackingNumber
      */
     public function testGetEmptyTrackingNumber(){
          $this->getClient()->lastCheckpoint()->get(self::USPS_SLUG, '');
     }
 
     /**
-     * @expectedException \ParcelGoClient\Exception\EmptySlug
-     * @throws \ParcelGoClient\Exception\EmptySlug
+     * @expectedException \Post2GoClient\Exception\EmptySlug
+     * @throws \Post2GoClient\Exception\EmptySlug
      */
     public function testGetEmptySlug(){
         $this->getClient()->lastCheckpoint()->get('', '');

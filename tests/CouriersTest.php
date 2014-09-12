@@ -1,5 +1,5 @@
 <?php
-namespace ParcelGoClient\Tests;
+namespace Post2GoClient\Tests;
 
 class CourierTest extends Base
 {
@@ -31,8 +31,8 @@ class CourierTest extends Base
     }
 
     /**
-     * @expectedException \ParcelGoClient\Exception\EmptyTrackingNumber
-     * @throws \ParcelGoClient\Exception\EmptyTrackingNumber
+     * @expectedException \Post2GoClient\Exception\EmptyTrackingNumber
+     * @throws \Post2GoClient\Exception\EmptyTrackingNumber
      */
     public function testDetectEmptyTrackingNumber(){
         $this->getClient()->couriers()->detect('');

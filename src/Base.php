@@ -1,7 +1,7 @@
 <?php
-namespace ParcelGoClient;
+namespace Post2GoClient;
 
-use ParcelGoClient\Core\Request;
+use Post2GoClient\Core\Request;
 
 abstract class Base
 {
@@ -16,7 +16,7 @@ abstract class Base
     }
 
     /**
-     * @return \ParcelGoClient\Core\Request
+     * @return \Post2GoClient\Core\Request
      */
     protected function getRequest()
     {

@@ -1,5 +1,5 @@
 <?php
-namespace ParcelGoClient\Core\RequestParam;
+namespace Post2GoClient\Core\RequestParam;
 
 class Tracking implements RequestParamInterface
 {

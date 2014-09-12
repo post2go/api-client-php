@@ -1,7 +1,7 @@
 <?php
-namespace ParcelGoClient\Response;
+namespace Post2GoClient\Response;
 
-use ParcelGoClient\Response\ValueObject\Checkpoint;
+use Post2GoClient\Response\ValueObject\Checkpoint;
 
 class Tracking
 {

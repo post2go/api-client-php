@@ -1,5 +1,5 @@
 <?php
-namespace ParcelGoClient\Exception;
+namespace Post2GoClient\Exception;
 
 class EmptyApiKey extends Base
 {

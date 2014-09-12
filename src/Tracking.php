@@ -1,8 +1,8 @@
 <?php
-namespace ParcelGoClient;
+namespace Post2GoClient;
 
-use ParcelGoClient\Exception\EmptySlug;
-use ParcelGoClient\Exception\EmptyTrackingNumber;
+use Post2GoClient\Exception\EmptySlug;
+use Post2GoClient\Exception\EmptyTrackingNumber;
 
 class Tracking extends Base
 {
@@ -11,7 +11,7 @@ class Tracking extends Base
      * @param $trackingNumber
      * @throws Exception\EmptySlug
      * @throws Exception\EmptyTrackingNumber
-     * @return \ParcelGoClient\Response\TrackingSimple
+     * @return \Post2GoClient\Response\TrackingSimple
      */
     public function create($courierSlug, $trackingNumber)
     {
@@ -33,7 +33,7 @@ class Tracking extends Base
      * @param $trackingNumber
      * @throws Exception\EmptySlug
      * @throws Exception\EmptyTrackingNumber
-     * @return \ParcelGoClient\Response\Tracking
+     * @return \Post2GoClient\Response\Tracking
      */
     public function get($courierSlug, $trackingNumber)
     {
@@ -60,7 +60,7 @@ class Tracking extends Base
      * @throws \Exception
      * @throws \Guzzle\Common\Exception\GuzzleException
      */
-    public function edit($courierSlug, $trackingNumber, \ParcelGoClient\Core\RequestParam\Tracking $trackingRequest = null)
+    public function edit($courierSlug, $trackingNumber, \Post2GoClient\Core\RequestParam\Tracking $trackingRequest = null)
     {
         if (empty($courierSlug)) {
             throw new EmptySlug;

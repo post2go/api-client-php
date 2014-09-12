@@ -1,5 +1,5 @@
 <?php
-namespace ParcelGoClient\Tests;
+namespace Post2GoClient\Tests;
 
 class TrackingTest extends Base
 {
@@ -16,7 +16,7 @@ class TrackingTest extends Base
 
     public function testEdit()
     {
-        $trackingRequest = new \ParcelGoClient\Core\RequestParam\Tracking();
+        $trackingRequest = new \Post2GoClient\Core\RequestParam\Tracking();
         $trackingRequest->setTitle('test edit title1');
         $response = $this->getClient()->tracking()->edit(self::USPS_SLUG, self::USPS_TRACKING_NUMBER, $trackingRequest);
         $this->assertInstanceOf('\ParcelGoClient\Response\TrackingSimple', $response);
@@ -82,8 +82,8 @@ class TrackingTest extends Base
     }
 
     /**
-     * @expectedException \ParcelGoClient\Exception\EmptyTrackingNumber
-     * @throws \ParcelGoClient\Exception\EmptyTrackingNumber
+     * @expectedException \Post2GoClient\Exception\EmptyTrackingNumber
+     * @throws \Post2GoClient\Exception\EmptyTrackingNumber
      */
     public function testGetEmptyTrackingNumber()
     {
@@ -91,8 +91,8 @@ class TrackingTest extends Base
     }
 
     /**
-     * @expectedException \ParcelGoClient\Exception\EmptySlug
-     * @throws \ParcelGoClient\Exception\EmptySlug
+     * @expectedException \Post2GoClient\Exception\EmptySlug
+     * @throws \Post2GoClient\Exception\EmptySlug
      */
     public function testGetEmptySlug()
     {
@@ -100,8 +100,8 @@ class TrackingTest extends Base
     }
 
     /**
-     * @expectedException \ParcelGoClient\Exception\EmptyTrackingNumber
-     * @throws \ParcelGoClient\Exception\EmptyTrackingNumber
+     * @expectedException \Post2GoClient\Exception\EmptyTrackingNumber
+     * @throws \Post2GoClient\Exception\EmptyTrackingNumber
      */
     public function testCreateEmptyTrackingNumber()
     {
@@ -109,8 +109,8 @@ class TrackingTest extends Base
     }
 
     /**
-     * @expectedException \ParcelGoClient\Exception\EmptySlug
-     * @throws \ParcelGoClient\Exception\EmptySlug
+     * @expectedException \Post2GoClient\Exception\EmptySlug
+     * @throws \Post2GoClient\Exception\EmptySlug
      */
     public function testCreateEmptySlug()
     {
@@ -118,8 +118,8 @@ class TrackingTest extends Base
     }
 
     /**
-     * @expectedException \ParcelGoClient\Exception\EmptyTrackingNumber
-     * @throws \ParcelGoClient\Exception\EmptyTrackingNumber
+     * @expectedException \Post2GoClient\Exception\EmptyTrackingNumber
+     * @throws \Post2GoClient\Exception\EmptyTrackingNumber
      */
     public function testReactivateEmptyTrackingNumber()
     {
@@ -127,8 +127,8 @@ class TrackingTest extends Base
     }
 
     /**
-     * @expectedException \ParcelGoClient\Exception\EmptySlug
-     * @throws \ParcelGoClient\Exception\EmptySlug
+     * @expectedException \Post2GoClient\Exception\EmptySlug
+     * @throws \Post2GoClient\Exception\EmptySlug
      */
     public function testReactivateEmptySlug()
     {

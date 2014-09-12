@@ -1,12 +1,12 @@
 <?php
-namespace ParcelGoClient\Tests;
+namespace Post2GoClient\Tests;
 
-use ParcelGoClient\Response;
+use Post2GoClient\Response;
 
 class ResponseTest extends Base
 {
     /**
-     * @expectedException \ParcelGoClient\Exception\Response\BadRequest
+     * @expectedException \Post2GoClient\Exception\Response\BadRequest
      */
     public function testBadRequestCode()
     {
@@ -14,7 +14,7 @@ class ResponseTest extends Base
     }
 
     /**
-     * @expectedException \ParcelGoClient\Exception\Response\ServerError
+     * @expectedException \Post2GoClient\Exception\Response\ServerError
      */
     public function testServerErrorCode()
     {
@@ -22,7 +22,7 @@ class ResponseTest extends Base
     }
 
     /**
-     * @expectedException \ParcelGoClient\Exception\Response\AuthRequired
+     * @expectedException \Post2GoClient\Exception\Response\AuthRequired
      */
     public function testAuthRequiredCode()
     {
@@ -30,7 +30,7 @@ class ResponseTest extends Base
     }
 
     /**
-     * @expectedException \ParcelGoClient\Exception\Response\MethodNotAllowed
+     * @expectedException \Post2GoClient\Exception\Response\MethodNotAllowed
      */
     public function testMethodNotAllowedCode()
     {
@@ -38,7 +38,7 @@ class ResponseTest extends Base
     }
 
     /**
-     * @expectedException \ParcelGoClient\Exception\Response\Base
+     * @expectedException \Post2GoClient\Exception\Response\Base
      */
     public function testMissingMetaCode()
     {
@@ -46,7 +46,7 @@ class ResponseTest extends Base
     }
 
     /**
-     * @expectedException \ParcelGoClient\Exception\Response\Base
+     * @expectedException \Post2GoClient\Exception\Response\Base
      */
     public function testUnknownCode()
     {

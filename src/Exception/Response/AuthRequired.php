@@ -1,5 +1,5 @@
 <?php
-namespace ParcelGoClient\Exception\Response;
+namespace Post2GoClient\Exception\Response;
 
 class AuthRequired extends Base
 {

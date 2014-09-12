@@ -1,5 +1,5 @@
 <?php
-namespace ParcelGoClient\Tests;
+namespace Post2GoClient\Tests;
 
 class Bootstrap
 {

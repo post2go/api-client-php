@@ -1,14 +1,14 @@
 <?php
-namespace ParcelGoClient\Tests;
+namespace Post2GoClient\Tests;
 
-use ParcelGoClient\Core\Request;
+use Post2GoClient\Core\Request;
 
 class RequestTest extends Base
 {
 
     /**
-     * @expectedException \ParcelGoClient\Exception\EmptyApiKey
-     * @throws \ParcelGoClient\Exception\EmptyApiKey
+     * @expectedException \Post2GoClient\Exception\EmptyApiKey
+     * @throws \Post2GoClient\Exception\EmptyApiKey
      */
     public function testConstructEmptyApiKey()
     {

@@ -1,8 +1,8 @@
 <?php
-namespace ParcelGoClient;
+namespace Post2GoClient;
 
-use ParcelGoClient\Exception\EmptySlug;
-use ParcelGoClient\Exception\EmptyTrackingNumber;
+use Post2GoClient\Exception\EmptySlug;
+use Post2GoClient\Exception\EmptyTrackingNumber;
 
 class LastCheckPoint extends Base
 {
@@ -14,7 +14,7 @@ class LastCheckPoint extends Base
      *
      * @throws Exception\EmptySlug
      * @throws Exception\EmptyTrackingNumber
-     * @return \ParcelGoClient\Response\LastCheckPoint
+     * @return \Post2GoClient\Response\LastCheckPoint
      */
     public function get($courierSlug, $trackingNumber)
     {

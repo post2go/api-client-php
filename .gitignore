@@ -2,3 +2,4 @@ vendor/*
 .idea/
 tests/report/*
 phpunit.xml
+api-client-php.iml

@@ -1,5 +1,5 @@
 <?php
-namespace ParcelGoClient;
+namespace Post2GoClient;
 
 class Manager
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace ParcelGoClient;
+namespace Post2GoClient;
 
-use ParcelGoClient\Exception\EmptyTrackingNumber;
-use ParcelGoClient\Response\CourierDetect;
+use Post2GoClient\Exception\EmptyTrackingNumber;
+use Post2GoClient\Response\CourierDetect;
 
 class Couriers extends Base
 {
     /**
-     * @return \ParcelGoClient\Response\Couriers
+     * @return \Post2GoClient\Response\Couriers
      */
     public function get()
     {

@@ -1,7 +1,7 @@
 <?php
-namespace ParcelGoClient\Exception\Response;
+namespace Post2GoClient\Exception\Response;
 
-class Base extends \ParcelGoClient\Exception\Base
+class Base extends \Post2GoClient\Exception\Base
 {
 
 }

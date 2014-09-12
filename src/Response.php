@@ -1,12 +1,12 @@
 <?php
-namespace ParcelGoClient;
+namespace Post2GoClient;
 
-use ParcelGoClient\Exception\Response\Base as BaseException;
-use ParcelGoClient\Exception\Response\AccessDenied;
-use ParcelGoClient\Exception\Response\AuthRequired;
-use ParcelGoClient\Exception\Response\BadRequest;
-use ParcelGoClient\Exception\Response\MethodNotAllowed;
-use ParcelGoClient\Exception\Response\ServerError;
+use Post2GoClient\Exception\Response\AccessDenied;
+use Post2GoClient\Exception\Response\AuthRequired;
+use Post2GoClient\Exception\Response\BadRequest;
+use Post2GoClient\Exception\Response\Base as BaseException;
+use Post2GoClient\Exception\Response\MethodNotAllowed;
+use Post2GoClient\Exception\Response\ServerError;
 
 class Response
 {

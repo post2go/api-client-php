@@ -1,10 +1,10 @@
 <?php
-namespace ParcelGoClient\Core;
+namespace Post2GoClient\Core;
 
 use Guzzle\Common\Exception\GuzzleException;
 use Guzzle\Http\Client;
 use Guzzle\Http\Exception\BadResponseException;
-use ParcelGoClient\Exception\EmptyApiKey;
+use Post2GoClient\Exception\EmptyApiKey;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class Request
@@ -19,7 +19,7 @@ class Request
      * @param string $apiKey
      * @param string $apiUrl
      * @param array $guzzlePlugins
-     * @throws \ParcelGoClient\Exception\EmptyApiKey
+     * @throws \Post2GoClient\Exception\EmptyApiKey
      */
     public function __construct($apiKey, $apiUrl = '', $guzzlePlugins = array())
     {
