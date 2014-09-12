@@ -1,8 +1,8 @@
 {
-    "name": "parcelgo/parcelgo-client",
-    "keywords": ["track", "parcelgo", "shipping", "tracking"],
-    "description": "ParcelGo API client.",
-    "homepage": "http://parcelgo.ru/",
+    "name": "post2go/post2go-client",
+    "keywords": ["track", "post2go", "shipping", "tracking"],
+    "description": "Post2Go API client.",
+    "homepage": "http://post2go.ru/",
     "license": "BSD-3-Clause",
     "version": "1.0.5",
     "require" : {
@@ -14,8 +14,8 @@
     },
     "autoload" : {
         "psr-4": {
-            "ParcelGoClient\\": "src/",
-            "ParcelGoClient\\Tests\\": "tests/"
+            "Post2GoClient\\": "src/",
+            "Post2GoClient\\Tests\\": "tests/"
         }
     }
 }
