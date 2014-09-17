@@ -5,7 +5,7 @@
          convertWarningsToExceptions="true"
          colors="true">
 
-    <testsuite name="ParcelGoTests">
+    <testsuite name="Post2GoTests">
         <directory>tests</directory>
     </testsuite>
 
