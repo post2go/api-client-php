@@ -17,7 +17,7 @@ foreach ($couriersResponse as $courier) {
     echo $courier->getCountryCode() . ' ' . $courier->getName() . "\n";;
 };
 
-//add tracking number to parcelgo for tracking
+//add tracking number to post2go for tracking
 $track = $post2goClient->tracking()->create($courier, $trackingNumber);
 
 //get tracking info

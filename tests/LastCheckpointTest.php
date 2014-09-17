@@ -8,7 +8,7 @@ class LastCheckpointTest extends Base
     {
         $response = $this->getClient()->lastCheckpoint()->get(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
 
-        $this->assertInstanceOf('\ParcelGoClient\Response\LastCheckPoint', $response);
+        $this->assertInstanceOf('\Post2GoClient\Response\LastCheckPoint', $response);
         $this->assertNotEmpty($response->getTrackingNumber());
         $this->assertNotEmpty($response->getCourierSlug());
         $this->assertNotEmpty($response->getStatus());

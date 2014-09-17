@@ -7,7 +7,7 @@ class TrackingTest extends Base
     public function testCreate()
     {
         $response = $this->getClient()->tracking()->create(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
-        $this->assertInstanceOf('\ParcelGoClient\Response\TrackingSimple', $response);
+        $this->assertInstanceOf('\Post2GoClient\Response\TrackingSimple', $response);
         $this->assertNotEmpty($response->getTracking());
         $track = $response->getTracking();
         $this->assertNotEmpty($track->getCourierSlug());
@@ -19,7 +19,7 @@ class TrackingTest extends Base
         $trackingRequest = new \Post2GoClient\Core\RequestParam\Tracking();
         $trackingRequest->setTitle('test edit title1');
         $response = $this->getClient()->tracking()->edit(self::USPS_SLUG, self::USPS_TRACKING_NUMBER, $trackingRequest);
-        $this->assertInstanceOf('\ParcelGoClient\Response\TrackingSimple', $response);
+        $this->assertInstanceOf('\Post2GoClient\Response\TrackingSimple', $response);
         $this->assertNotEmpty($response->getTracking());
         $track = $response->getTracking();
         $this->assertNotEmpty($track->getCourierSlug());
@@ -29,7 +29,7 @@ class TrackingTest extends Base
     public function testGet()
     {
         $response = $this->getClient()->tracking()->get(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
-        $this->assertInstanceOf('\ParcelGoClient\Response\Tracking', $response);
+        $this->assertInstanceOf('\Post2GoClient\Response\Tracking', $response);
         $this->assertNotEmpty($response->getTrackingNumber());
         $this->assertNotEmpty($response->getCourierSlug());
         $this->assertNotEmpty($response->isDelivered());
@@ -63,7 +63,7 @@ class TrackingTest extends Base
     {
         $response = $this->getClient()->tracking()->reactivate(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
 
-        $this->assertInstanceOf('\ParcelGoClient\Response\TrackingSimple', $response);
+        $this->assertInstanceOf('\Post2GoClient\Response\TrackingSimple', $response);
         $this->assertNotEmpty($response->getTracking());
         $track = $response->getTracking();
         $this->assertNotEmpty($track->getCourierSlug());
@@ -73,7 +73,7 @@ class TrackingTest extends Base
     public function testDelete()
     {
         $response = $this->getClient()->tracking()->delete(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
-        $this->assertInstanceOf('\ParcelGoClient\Response\TrackingSimple', $response);
+        $this->assertInstanceOf('\Post2GoClient\Response\TrackingSimple', $response);
         $this->assertNotEmpty($response->getTracking());
         $track = $response->getTracking();
         $this->assertNotEmpty($track->getCourierSlug());

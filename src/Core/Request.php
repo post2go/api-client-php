@@ -9,7 +9,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class Request
 {
-    private $apiUrl = 'http://api.parcelgo.ru';
+    private $apiUrl = 'http://api.post2go.ru';
     private $apiEndpoint = '/v2/jsonrpc';
     protected $apiKey = '';
     protected $guzzlePlugins = array();

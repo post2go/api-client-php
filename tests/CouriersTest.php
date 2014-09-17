@@ -7,7 +7,7 @@ class CourierTest extends Base
     public function testGet()
     {
         $response = $this->getClient()->couriers()->get();
-        $this->assertInstanceOf('\ParcelGoClient\Response\Couriers', $response);
+        $this->assertInstanceOf('\Post2GoClient\Response\Couriers', $response);
         $this->assertNotEmpty($response->getCouriers());
         foreach ($response->getCouriers() as $couriers) {
             $this->assertNotEmpty($couriers->getName());
@@ -19,7 +19,7 @@ class CourierTest extends Base
     public function testDetect()
     {
         $response = $this->getClient()->couriers()->detect(self::USPS_TRACKING_NUMBER);
-        $this->assertInstanceOf('\ParcelGoClient\Response\CourierDetect', $response);
+        $this->assertInstanceOf('\Post2GoClient\Response\CourierDetect', $response);
         $this->assertNotEmpty($response->getTotal());
         $this->assertNotEmpty($response->getTrackingNumber());
         $this->assertNotEmpty($response->getCouriers());
