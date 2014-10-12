@@ -40,6 +40,14 @@ class Courier
     /**
      * @return string
      */
+    public function getNormalizedTrackingNumber()
+    {
+        return $this->countryCode;
+    }
+
+    /**
+     * @return string
+     */
     public function getCountryCode()
     {
         return $this->countryCode;
