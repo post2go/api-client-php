@@ -42,7 +42,7 @@ class Courier
      */
     public function getNormalizedTrackingNumber()
     {
-        return $this->countryCode;
+        return $this->normalizedTrackingNumber;
     }
 
     /**
