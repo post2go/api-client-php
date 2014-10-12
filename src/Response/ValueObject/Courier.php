@@ -13,17 +13,28 @@ class Courier
      */
     private $slug;
 
+    /**
+     * @var string
+     */
+    private $countryCode;
 
     /**
-     * @param string $name
-     * @param string $slug
-     * @param string $countryCode
+     * @var string
      */
-    public function __construct($name, $slug, $countryCode)
+    private $normalizedTrackingNumber;
+
+    /**
+     * @param $name
+     * @param $slug
+     * @param $countryCode
+     * @param string $tracking
+     */
+    public function __construct($name, $slug, $countryCode, $tracking = '')
     {
         $this->name = $name;
         $this->slug = $slug;
         $this->countryCode = $countryCode;
+        $this->normalizedTrackingNumber = $tracking;
     }
 
     /**
