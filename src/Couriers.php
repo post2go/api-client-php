@@ -31,9 +31,9 @@ class Couriers extends Base
             throw new EmptyTrackingNumber();
         }
 
-        $response = new Response($this->getRequest()->call('detectCourier', [
+        $response = new Response($this->getRequest()->call('detectCourier', array(
             'tracking_number' => $trackingNumber
-        ]));
+        )));
 
         return $response->courierDetect();
     }
@@ -52,9 +52,9 @@ class Couriers extends Base
             throw new EmptyTrackingNumber();
         }
 
-        $response = new Response($this->getRequest()->call('validForCourier', [
+        $response = new Response($this->getRequest()->call('validForCourier', array(
             'tracking_number' => $trackingNumber
-        ]));
+        )));
 
         return $response->courierDetect();
     }

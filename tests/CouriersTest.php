@@ -27,6 +27,22 @@ class CourierTest extends Base
             $this->assertNotEmpty($couriers->getName());
             $this->assertNotEmpty($couriers->getSlug());
             $this->assertNotEmpty($couriers->getCountryCode());
+            $this->assertNotEmpty($couriers->getNormalizedTrackingNumber());
+        }
+    }
+
+    public function testValidFor()
+    {
+        $response = $this->getClient()->couriers()->validFor(self::USPS_TRACKING_NUMBER);
+        $this->assertInstanceOf('\Post2GoClient\Response\CourierDetect', $response);
+        $this->assertNotEmpty($response->getTotal());
+        $this->assertNotEmpty($response->getTrackingNumber());
+        $this->assertNotEmpty($response->getCouriers());
+        foreach ($response->getCouriers() as $couriers) {
+            $this->assertNotEmpty($couriers->getName());
+            $this->assertNotEmpty($couriers->getSlug());
+            $this->assertNotEmpty($couriers->getCountryCode());
+            $this->assertNotEmpty($couriers->getNormalizedTrackingNumber());
         }
     }
 
