@@ -3,7 +3,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $post2goClient = new Post2GoClient\Manager('INSERT YOUR API KEY HERE');
 
-$courier = 'usps';
+$courierSlug = 'usps';
 $trackingNumber = 'EC208786464US';
 $couriersResponse = $post2goClient->couriers()->detect($trackingNumber)->getCouriers();
 // list detected couriers
@@ -18,10 +18,10 @@ foreach ($couriersResponse as $courier) {
 };
 
 //add tracking number to post2go for tracking
-$track = $post2goClient->tracking()->create($courier, $trackingNumber);
+$track = $post2goClient->tracking()->create($courierSlug, $trackingNumber);
 
 //get tracking info
-$trackInfo = $post2goClient->tracking()->get($courier, $trackingNumber);
+$trackInfo = $post2goClient->tracking()->get($courierSlug, $trackingNumber);
 echo $trackInfo->getLastCheck()->format('Y-m-d H:i:s') . "\n";;
 
 foreach ($trackInfo->getCheckpoints() as $checkpoint) {
@@ -30,10 +30,10 @@ foreach ($trackInfo->getCheckpoints() as $checkpoint) {
 };
 
 //reactivate tracking number
-$post2goClient->tracking()->reactivate($courier, $trackingNumber);
+$post2goClient->tracking()->reactivate($courierSlug, $trackingNumber);
 
 //get last checkpoint of tracking number
-$checkpoint = $post2goClient->lastCheckpoint()->get($courier, $trackingNumber)->getCheckpoint();
+$checkpoint = $post2goClient->lastCheckpoint()->get($courierSlug, $trackingNumber)->getCheckpoint();
 echo $checkpoint->getCountryCode() . "\n";
 echo $checkpoint->getTime() . "\n";
 echo $checkpoint->getLocation() . "\n";
