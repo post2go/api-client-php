@@ -16,20 +16,6 @@ class LastCheckpointTest extends Base
         $checkpoint = ($response->getCheckpoint());
         $this->assertNotEmpty($checkpoint->getTime());
         $this->assertNotEmpty($checkpoint->getStatus());
-        $this->assertThat(
-            $checkpoint->getLocation(),
-            $this->logicalOr(
-                $this->logicalNot($this->isEmpty()),
-                $this->isNull()
-            )
-        );
-        $this->assertThat(
-            $checkpoint->getZipCode(),
-            $this->logicalOr(
-                $this->logicalNot($this->isEmpty()),
-                $this->isNull()
-            )
-        );
         $this->assertNotEmpty($checkpoint->getCountryCode());
         $this->assertNotEmpty($checkpoint->getCourierSlug());
         $this->assertNotEmpty($checkpoint->getMessage());
