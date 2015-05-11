@@ -5,7 +5,9 @@ use Post2GoClient\Exception\Response\AccessDenied;
 use Post2GoClient\Exception\Response\AuthRequired;
 use Post2GoClient\Exception\Response\BadRequest;
 use Post2GoClient\Exception\Response\Base as BaseException;
+use Post2GoClient\Exception\Response\InvalidTracking;
 use Post2GoClient\Exception\Response\MethodNotAllowed;
+use Post2GoClient\Exception\Response\NotEnoughMoney;
 use Post2GoClient\Exception\Response\ServerError;
 
 class Response
@@ -39,11 +41,17 @@ class Response
                 case -32603:
                     throw new ServerError($data['error']['message'], $data['error']['code']);
                     break;
+                case -32604:
+                    throw new InvalidTracking($data['error']['message'], $data['error']['code']);
+                    break;
                 case 401:
                     throw new AuthRequired($data['error']['message'], $data['error']['code']);
                     break;
                 case 403:
                     throw new AccessDenied($data['error']['message'], $data['error']['code']);
+                    break;
+                case 402:
+                    throw new NotEnoughMoney($data['error']['message'], $data['error']['code']);
                     break;
                 default:
                     throw new BaseException($data['error']['message'], $data['error']['code']);
