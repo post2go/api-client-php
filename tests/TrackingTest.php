@@ -1,6 +1,8 @@
 <?php
 namespace Post2GoClient\Tests;
 
+use Post2GoClient\Core\RequestParam\Tracking;
+
 class TrackingTest extends Base
 {
 
@@ -14,11 +16,50 @@ class TrackingTest extends Base
         $this->assertNotEmpty($track->getTrackingNumber());
     }
 
+    public function testCreateWithData()
+    {
+        $trackingData = [
+          'title' => 'Test parcel title',
+          'orderCode' => '#123DCV',
+          'orderUrl' => 'http://my-store.com/order/123DCV',
+          'customerName' => 'Obi Van',
+          'emails' => ['user1@my-store.com', 'user2@my-store.com'],
+        ];
+        $tracking = new Tracking();
+        $tracking->setTitle($trackingData['title']);
+        $tracking->setOrderCode($trackingData['orderCode']);
+        $tracking->setOrderUrl($trackingData['orderUrl']);
+        $tracking->setCustomerName($trackingData['customerName']);
+        $tracking->setEmails($trackingData['emails']);
+
+        $response = $this->getClient()->tracking()->create(self::USPS_SLUG, self::USPS_TRACKING_NUMBER);
+        $this->assertInstanceOf('\Post2GoClient\Response\TrackingSimple', $response);
+        $this->assertNotEmpty($response->getTracking());
+        $track = $response->getTracking();
+        $this->assertNotEmpty($track->getCourierSlug());
+        $this->assertNotEmpty($track->getTrackingNumber());
+    }
+
     public function testEdit()
     {
-        $trackingRequest = new \Post2GoClient\Core\RequestParam\Tracking();
-        $trackingRequest->setTitle('test edit title1');
-        $response = $this->getClient()->tracking()->edit(self::USPS_SLUG, self::USPS_TRACKING_NUMBER, $trackingRequest);
+        $trackingData = [
+            'title' => 'Test parcel title',
+            'orderCode' => '#123DCV',
+            'orderUrl' => 'http://my-store.com/order/123DCV',
+            'customerName' => 'Obi Van',
+            'emails' => ['user1@my-store.com', 'user2@my-store.com'],
+        ];
+
+        $tracking = new \Post2GoClient\Core\RequestParam\Tracking();
+        $tracking->setTitle($trackingData['title']);
+        $tracking->setOrderCode($trackingData['orderCode']);
+        $tracking->setOrderUrl($trackingData['orderUrl']);
+        $tracking->setCustomerName($trackingData['customerName']);
+        $tracking->setEmails($trackingData['emails']);
+
+        $this->assertEquals($trackingData, $tracking->toArray());
+
+        $response = $this->getClient()->tracking()->edit(self::USPS_SLUG, self::USPS_TRACKING_NUMBER, $tracking);
         $this->assertInstanceOf('\Post2GoClient\Response\TrackingSimple', $response);
         $this->assertNotEmpty($response->getTracking());
         $track = $response->getTracking();

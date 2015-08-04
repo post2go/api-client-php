@@ -48,7 +48,6 @@ class Request
      * @param null $endpoint
      * @throws \Exception
      * @throws \Guzzle\Common\Exception\GuzzleException
-     * @internal param array $data
      * @return array|bool|float|int|string
      */
     public function call($method, $params = array(), $id = 1, $endpoint = null)
