@@ -18,13 +18,13 @@ class TrackingTest extends Base
 
     public function testCreateWithData()
     {
-        $trackingData = [
+        $trackingData = array(
           'title' => 'Test parcel title',
           'orderCode' => '#123DCV',
           'orderUrl' => 'http://my-store.com/order/123DCV',
           'customerName' => 'Obi Van',
-          'emails' => ['user1@my-store.com', 'user2@my-store.com'],
-        ];
+          'emails' => array('user1@my-store.com', 'user2@my-store.com'),
+        );
         $tracking = new Tracking();
         $tracking->setTitle($trackingData['title']);
         $tracking->setOrderCode($trackingData['orderCode']);
@@ -42,13 +42,13 @@ class TrackingTest extends Base
 
     public function testEdit()
     {
-        $trackingData = [
+        $trackingData = array(
             'title' => 'Test parcel title',
             'orderCode' => '#123DCV',
             'orderUrl' => 'http://my-store.com/order/123DCV',
             'customerName' => 'Obi Van',
-            'emails' => ['user1@my-store.com', 'user2@my-store.com'],
-        ];
+            'emails' => array('user1@my-store.com', 'user2@my-store.com'),
+        );
 
         $tracking = new \Post2GoClient\Core\RequestParam\Tracking();
         $tracking->setTitle($trackingData['title']);
