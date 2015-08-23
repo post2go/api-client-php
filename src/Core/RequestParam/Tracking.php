@@ -31,7 +31,7 @@ class Tracking implements RequestParamInterface
      * Массив email адресов
      * @var array
      */
-    private $emails = [];
+    private $emails = array();
 
     /**
      * @return null|string
