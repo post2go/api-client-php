@@ -29,7 +29,7 @@ class Tracking
     /**
      * @var Checkpoint[]
      */
-    private $checkpoints;
+    private $checkpoints = [];
 
     public function __construct($data)
     {
@@ -89,6 +89,4 @@ class Tracking
     {
         return $this->trackingNumber;
     }
-
-
 }

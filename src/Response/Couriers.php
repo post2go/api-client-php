@@ -8,7 +8,7 @@ class Couriers
     /**
      * @var Courier[]
      */
-    private $couriers;
+    private $couriers = [];
 
     /**
      * @param array $couriers
@@ -27,5 +27,4 @@ class Couriers
     {
         return $this->couriers;
     }
-
 }

@@ -8,7 +8,7 @@ class CourierDetect
     /**
      * @var Courier[]
      */
-    private $couriers;
+    private $couriers = [];
 
     /**
      * @var int
@@ -55,5 +55,4 @@ class CourierDetect
     {
         return $this->trackingNumber;
     }
-
 }
