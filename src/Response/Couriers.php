@@ -8,7 +8,7 @@ class Couriers
     /**
      * @var Courier[]
      */
-    private $couriers = [];
+    private $couriers = array();
 
     /**
      * @param array $couriers

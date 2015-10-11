@@ -8,7 +8,7 @@ class CourierDetect
     /**
      * @var Courier[]
      */
-    private $couriers = [];
+    private $couriers = array();
 
     /**
      * @var int

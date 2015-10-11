@@ -29,7 +29,7 @@ class Tracking
     /**
      * @var Checkpoint[]
      */
-    private $checkpoints = [];
+    private $checkpoints = array();
 
     public function __construct($data)
     {
