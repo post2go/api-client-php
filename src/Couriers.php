@@ -7,13 +7,25 @@ use Post2GoClient\Exception\EmptyTrackingNumber;
 class Couriers extends Base
 {
     /**
-     * Return couriers list.
+     * Return active couriers list.
      *
      * @return \Post2GoClient\Response\Couriers
      */
     public function get()
     {
         $response = new Response($this->getRequest()->call('getCouriers'));
+
+        return $response->couriers();
+    }
+
+    /**
+     * Return all couriers list.
+     *
+     * @return \Post2GoClient\Response\Couriers
+     */
+    public function getAll()
+    {
+        $response = new Response($this->getRequest()->call('getAllCouriers'));
 
         return $response->couriers();
     }

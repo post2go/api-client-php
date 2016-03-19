@@ -14,6 +14,4 @@ class RequestTest extends Base
     {
         new Request('');
     }
-
-
 }

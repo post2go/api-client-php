@@ -19,11 +19,11 @@ class TrackingTest extends Base
     public function testCreateWithData()
     {
         $trackingData = array(
-          'title' => 'Test parcel title',
-          'orderCode' => '#123DCV',
-          'orderUrl' => 'http://my-store.com/order/123DCV',
-          'customerName' => 'Obi Van',
-          'emails' => array('user1@my-store.com', 'user2@my-store.com'),
+            'title' => 'Test parcel title',
+            'orderCode' => '#123DCV',
+            'orderUrl' => 'http://my-store.com/order/123DCV',
+            'customerName' => 'Obi Van',
+            'emails' => array('user1@my-store.com', 'user2@my-store.com'),
         );
         $tracking = new Tracking();
         $tracking->setTitle($trackingData['title']);
