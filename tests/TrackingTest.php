@@ -79,7 +79,6 @@ class TrackingTest extends Base
         $this->assertNotEmpty($response->getCheckpoints());
         foreach ($response->getCheckpoints() as $checkpoints) {
             $this->assertNotEmpty($checkpoints->getTime());
-            $this->assertNotEmpty($checkpoints->getStatus());
             $this->assertNotEmpty($checkpoints->getCountryCode());
             $this->assertNotEmpty($checkpoints->getCourierSlug());
             $this->assertNotEmpty($checkpoints->getMessage());
