@@ -19,11 +19,11 @@ class TrackingTest extends Base
     public function testCreateWithData()
     {
         $trackingData = array(
-          'title' => 'Test parcel title',
-          'orderCode' => '#123DCV',
-          'orderUrl' => 'http://my-store.com/order/123DCV',
-          'customerName' => 'Obi Van',
-          'emails' => array('user1@my-store.com', 'user2@my-store.com'),
+            'title' => 'Test parcel title',
+            'orderCode' => '#123DCV',
+            'orderUrl' => 'http://my-store.com/order/123DCV',
+            'customerName' => 'Obi Van',
+            'emails' => array('user1@my-store.com', 'user2@my-store.com'),
         );
         $tracking = new Tracking();
         $tracking->setTitle($trackingData['title']);
@@ -79,7 +79,6 @@ class TrackingTest extends Base
         $this->assertNotEmpty($response->getCheckpoints());
         foreach ($response->getCheckpoints() as $checkpoints) {
             $this->assertNotEmpty($checkpoints->getTime());
-            $this->assertNotEmpty($checkpoints->getStatus());
             $this->assertNotEmpty($checkpoints->getCountryCode());
             $this->assertNotEmpty($checkpoints->getCourierSlug());
             $this->assertNotEmpty($checkpoints->getMessage());

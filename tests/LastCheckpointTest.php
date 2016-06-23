@@ -25,15 +25,17 @@ class LastCheckpointTest extends Base
      * @expectedException \Post2GoClient\Exception\EmptyTrackingNumber
      * @throws \Post2GoClient\Exception\EmptyTrackingNumber
      */
-    public function testGetEmptyTrackingNumber(){
-         $this->getClient()->lastCheckpoint()->get(self::USPS_SLUG, '');
+    public function testGetEmptyTrackingNumber()
+    {
+        $this->getClient()->lastCheckpoint()->get(self::USPS_SLUG, '');
     }
 
     /**
      * @expectedException \Post2GoClient\Exception\EmptySlug
      * @throws \Post2GoClient\Exception\EmptySlug
      */
-    public function testGetEmptySlug(){
+    public function testGetEmptySlug()
+    {
         $this->getClient()->lastCheckpoint()->get('', '');
     }
 
